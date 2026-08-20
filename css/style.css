@@ -94,6 +94,7 @@ html {
   scroll-behavior: smooth;
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
+  background-color: var(--color-navy);
 }
 
 body {
@@ -101,7 +102,7 @@ body {
   font-weight: 400;
   color: var(--color-text);
   line-height: 1.75;
-  background-color: var(--color-white);
+  background-color: var(--color-navy);
   overflow-x: hidden;
   width: 100%;
 }
