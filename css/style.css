@@ -3,10 +3,10 @@
    =============================================================
 
    TABLE OF CONTENTS:
-   1. CSS Variables (colors, fonts, spacing – change these to restyle the whole site)
+   1. CSS Variables (colors, fonts, fluid spacing & typography)
    2. Google Fonts Import
    3. Reset & Base Styles
-   4. Utility Classes
+   4. Scalable Container & Utility Classes
    5. Hero Section
    6. Welcome Section
    7. About Section
@@ -22,58 +22,46 @@
 
 /* -------------------------------------------------------------
    1. CSS VARIABLES
-   Change these to easily restyle the entire website.
    ------------------------------------------------------------- */
 :root {
   /* --- COLOR PALETTE --- */
-  /* Main accent: ocean blue */
   --color-ocean:       #3a7ca5;
-  /* Lighter teal for hover states */
   --color-teal:        #5ba4c8;
-  /* Deep navy for headings */
   --color-navy:        #1d3d52;
-  /* Sand / warm neutral */
   --color-sand:        #f7eedf;
-  /* Light sand for section backgrounds */
   --color-sand-light:  #f7f3eb;
-  /* White */
   --color-white:       #ffffff;
-  /* Dark text */
   --color-text:        #2c3e50;
-  /* Muted text */
   --color-text-muted:  #6b7c8a;
-  /* Divider lines */
   --color-divider:     #d5e4ed;
 
   /* --- TYPOGRAPHY --- */
-  /* Display font for headings (elegant, distinctive) */
   --font-display:  'Cormorant Garamond', Georgia, serif;
-  /* Body font (readable, clean) */
   --font-body:     'Jost', 'Helvetica Neue', sans-serif;
 
-  /* --- FONT SIZES (fluid scaling) --- */
-  --text-xs:    0.75rem;
-  --text-sm:    0.875rem;
-  --text-base:  1rem;
-  --text-md:    1.125rem;
-  --text-lg:    1.375rem;
-  --text-xl:    1.75rem;
-  --text-2xl:   2.25rem;
-  --text-3xl:   3rem;
-  --text-hero:  clamp(2.5rem, 6vw, 4.5rem);
+  /* --- FLUID FONT SIZES --- */
+  --text-xs:    clamp(0.72rem, 0.7rem + 0.15vw, 0.8rem);
+  --text-sm:    clamp(0.84rem, 0.8rem + 0.2vw, 0.92rem);
+  --text-base:  clamp(0.95rem, 0.92rem + 0.25vw, 1.06rem);
+  --text-md:    clamp(1.05rem, 1rem + 0.35vw, 1.2rem);
+  --text-lg:    clamp(1.2rem, 1.12rem + 0.5vw, 1.45rem);
+  --text-xl:    clamp(1.45rem, 1.3rem + 0.8vw, 1.85rem);
+  --text-2xl:   clamp(1.8rem, 1.6rem + 1.2vw, 2.4rem);
+  --text-3xl:   clamp(2.2rem, 1.9rem + 1.8vw, 3.2rem);
+  --text-hero:  clamp(2rem, 1.5rem + 3.5vw, 3.8rem);
 
-  /* --- SPACING --- */
-  --section-padding-y:  5rem;
-  --section-padding-x:  clamp(1.5rem, 5vw, 4rem);
+  /* --- SCALABLE CONTAINER & SPACING --- */
+  --section-padding-y:  clamp(3rem, 6vw, 5.5rem);
+  --container-padding:  clamp(1rem, 3.5vw, 2.5rem);
   --content-max-width:  1100px;
-  --card-padding:       2rem 2.5rem;
+  --card-padding:       clamp(1.25rem, 4vw, 3.25rem);
 
   /* --- BORDERS & SHADOWS --- */
   --radius-sm:   6px;
   --radius-md:   12px;
   --radius-lg:   20px;
-  --shadow-soft: 0 4px 24px rgba(29, 61, 82, 0.10);
-  --shadow-card: 0 8px 40px rgba(29, 61, 82, 0.13);
+  --shadow-soft: 0 4px 24px rgba(29, 61, 82, 0.08);
+  --shadow-card: 0 8px 36px rgba(29, 61, 82, 0.12);
 
   /* --- TRANSITIONS --- */
   --transition-fast:   0.2s ease;
@@ -81,19 +69,15 @@
   --transition-slow:   0.6s ease;
 
   /* --- OVERLAY --- */
-  /* Overlay color over background images for readability */
-  --overlay-bg: rgba(255, 255, 255, 0.93);
-  /* Dark overlay behind hero text card */
+  --overlay-bg: rgba(255, 255, 255, 0.95);
   --hero-overlay: rgba(10, 30, 45, 0.35);
 }
 
 
 /* -------------------------------------------------------------
    2. GOOGLE FONTS IMPORT
-   Cormorant Garamond = elegant serif for headings
-   Jost = modern, clean sans-serif for body text
    ------------------------------------------------------------- */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap');
 
 
 /* -------------------------------------------------------------
@@ -108,6 +92,7 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -117,6 +102,7 @@ body {
   line-height: 1.75;
   background-color: var(--color-white);
   overflow-x: hidden;
+  width: 100%;
 }
 
 img {
@@ -139,20 +125,26 @@ h1, h2, h3, h4 {
   font-family: var(--font-display);
   font-weight: 400;
   color: var(--color-navy);
-  line-height: 1.2;
+  line-height: 1.25;
 }
 
 p {
   margin-bottom: 1em;
-  text-align: justify;
-  hyphens: auto;
+  text-align: left;
+  line-height: 1.75;
+}
+
+@media (min-width: 768px) {
+  p {
+    text-align: justify;
+    hyphens: auto;
+  }
 }
 
 p:last-child {
   margin-bottom: 0;
 }
 
-/* Horizontal rule */
 hr {
   border: none;
   border-top: 1px solid var(--color-divider);
@@ -161,79 +153,64 @@ hr {
 
 
 /* -------------------------------------------------------------
-   4. UTILITY CLASSES
+   4. SCALABLE CONTAINER & UTILITY CLASSES
    ------------------------------------------------------------- */
 
+/* Scalable full-width wrapper with responsive background */
 .parallax-wrapper {
-  background-image: url('../assets/background.webp'); /* Pfad korrigiert */
+  background-image: url('../assets/background.webp');
   background-repeat: no-repeat;
   background-position: center top;
-  background-size: auto 100%;
+  background-size: cover;
   background-attachment: scroll;
+  width: 100%;
+  overflow-x: hidden;
 }
 
-/* Wir nehmen die spezifischen Klassen direkt mit auf, um alte Farben zu löschen */
-.section-parallax,
-.section-parallax.about,
-.section-parallax.services,
-.section-parallax.methodology,
-.section-parallax.faq,
-.section-parallax.contact {
-  min-height: 80vh; 
+/* Scalable Section Wrapper */
+.section-parallax {
+  min-height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 80px 20px; 
-  background: transparent !important; /* Macht ALLES garantiert durchsichtig */
+  padding: var(--section-padding-y) 0;
+  background: transparent !important;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-/* Sobald der Bildschirm kleiner als ein normaler Desktop ist (unter 1024px) */
-@media (max-width: 1023px) {
-  .parallax-wrapper {
-    background-attachment: scroll; 
-    background-size: cover;
-  }
-
-  .section-parallax {
-    padding: 40px 15px; 
-    min-height: auto;
-  }
-}
-
-/* Centers content and caps width */
+/* Fluid Scalable Container */
 .container {
   width: 100%;
   max-width: var(--content-max-width);
   margin-left: auto;
   margin-right: auto;
-  padding-left: var(--section-padding-x);
-  padding-right: var(--section-padding-x);
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+  box-sizing: border-box;
 }
 
-/* White content card (overlay on background images) */
+/* Fluid Content Card */
 .content-card {
   background: var(--overlay-bg);
   border-radius: var(--radius-md);
-  padding: clamp(2rem, 5vw, 3.5rem) clamp(1.5rem, 5vw, 3.5rem);
+  padding: var(--card-padding);
   box-shadow: var(--shadow-card);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
-/* Section wrapper with background image */
-.section-with-bg {
-  position: relative;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed; /* parallax effect on desktop */
-}
-
-/* Padding for all main sections */
+/* Main Section Padding */
 .section {
   padding: var(--section-padding-y) 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-/* Section heading style */
+/* Section Header Typography */
 .section-label {
   font-family: var(--font-body);
   font-size: var(--text-xs);
@@ -241,90 +218,86 @@ hr {
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--color-ocean);
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.5rem;
 }
 
 .section-title {
   font-family: var(--font-display);
   font-size: var(--text-2xl);
   color: var(--color-navy);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
 }
 
-/* Decorative horizontal rule under section titles */
 .section-title-rule {
   width: 48px;
   height: 2px;
   background: var(--color-ocean);
-  margin: 0 0 2rem 0;
+  margin: 0 0 1.75rem 0;
 }
 
 
-/* =============================================================
+/* -------------------------------------------------------------
    5. HERO SECTION
-   ============================================================= */
-
+   ------------------------------------------------------------- */
 .hero {
   position: relative;
   width: 100%;
-  /* Recommended image dimensions: 1920 x 1080 px (landscape, beach/ocean shot) */
-  height: 100vh;
-  min-height: 520px;
-  background-color: var(--color-navy); /* fallback while image loads */
+  min-height: 100vh;
+  min-height: 100svh;
+  min-height: 100dvh;
+  background-color: var(--color-navy);
   background-size: cover;
   background-position: center;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  padding: clamp(1rem, 4vw, 2.5rem);
+  box-sizing: border-box;
 }
 
-/* White card in the center of the hero */
+/* Scalable center hero card */
 .hero__card {
   position: relative;
   z-index: 2;
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  padding: clamp(2rem, 5vw, 3.5rem) clamp(2.5rem, 7vw, 5rem);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: clamp(1.75rem, 5vw, 3.5rem) clamp(1.5rem, 6vw, 4.5rem);
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.75rem;
   box-shadow: 0 12px 60px rgba(10, 30, 45, 0.22);
-  border-radius: var(--radius-sm);
-  /* Min and max widths so card doesn't get too small or too wide */
-  min-width: clamp(260px, 50vw, 480px);
-  max-width: 90vw;
+  border-radius: var(--radius-md);
+  width: min(100%, 540px);
+  box-sizing: border-box;
 }
 
-/* Row: orca icon + name */
 .hero__name-row {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: clamp(0.6rem, 2vw, 1rem);
   justify-content: center;
+  flex-wrap: wrap;
 }
 
-/* Orca icon inside hero card */
 .hero__orca {
   width: clamp(32px, 5vw, 48px);
   height: clamp(32px, 5vw, 48px);
   flex-shrink: 0;
 }
 
-/* "SARAH UNKE" heading */
 .hero__name {
   font-family: var(--font-display);
-  font-size: clamp(1.6rem, 4.5vw, 2.8rem);
+  font-size: var(--text-hero);
   font-weight: 500;
   letter-spacing: 0.12em;
   color: var(--color-navy);
-  line-height: 1;
+  line-height: 1.1;
 }
 
-/* Thin horizontal divider inside hero card */
 .hero__divider {
   width: 100%;
   height: 1px;
@@ -332,59 +305,48 @@ hr {
   margin: 0.25rem 0;
 }
 
-/* "Coaching Praxis" subtitle */
 .hero__subtitle {
   font-family: var(--font-body);
-  font-size: clamp(0.7rem, 1.5vw, 0.875rem);
+  font-size: clamp(0.72rem, 1.5vw, 0.875rem);
   font-weight: 400;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--color-text-muted);
+  text-align: center !important;
 }
 
-/* Animated scroll indicator arrow at bottom of hero */
 .hero__scroll-hint {
   position: absolute;
   z-index: 2;
-  bottom: 2rem;
+  bottom: clamp(1rem, 3vh, 2rem);
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.4rem;
-  opacity: 0.7;
+  opacity: 0.75;
   animation: bounce 2s infinite;
-}
-
-.hero__scroll-hint span {
-  font-family: var(--font-body);
-  font-size: var(--text-xs);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--color-white);
+  pointer-events: none;
 }
 
 .hero__scroll-hint svg {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   color: var(--color-white);
 }
 
 @keyframes bounce {
   0%, 100% { transform: translateX(-50%) translateY(0); }
-  50%       { transform: translateX(-50%) translateY(6px); }
+  50%      { transform: translateX(-50%) translateY(6px); }
 }
 
 
-/* =============================================================
+/* -------------------------------------------------------------
    6. WELCOME SECTION (Herzlich Willkommen)
-   ============================================================= */
-
-/* Plain white background – no background image needed here */
+   ------------------------------------------------------------- */
 .welcome {
   background-color: var(--color-white);
-  padding: var(--section-padding-y) 0;
 }
 
 .welcome .container {
@@ -393,54 +355,46 @@ hr {
 
 .welcome__heading {
   font-size: var(--text-2xl);
-  margin-bottom: 2rem; /* space between heading and text */
+  margin-bottom: clamp(1.25rem, 3vw, 2rem);
+  text-align: center;
 }
 
 .welcome__text {
   font-size: var(--text-md);
   color: var(--color-text);
-  text-align: justify;
-  hyphens: auto;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 
-/* =============================================================
+/* -------------------------------------------------------------
    7. ABOUT SECTION (Über mich)
-   ============================================================= */
-
-.about {
-  background: transparent;
-}
-
-/* Große Bildschirme: Bild links, Text rechts */
+   ------------------------------------------------------------- */
 .about__inner {
   display: grid;
-  grid-template-columns: 1fr 1.7fr;
-  gap: 2.5rem;
+  grid-template-columns: minmax(260px, 1fr) 1.6fr;
+  gap: clamp(1.5rem, 4vw, 3rem);
   align-items: center;
 }
 
 .about__photo-wrap {
   position: relative;
   width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
 }
 
 .about__photo {
   display: block !important;
   width: 100% !important;
   height: auto !important;
-  
-  /* Setzt alle fehlerhaften Einstellungen komplett zurück */
-  aspect-ratio: initial !important;
-  object-fit: initial !important;
-  
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-card);
   background: transparent !important;
 }
 
 .about__content .section-title {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
 }
 
 .about__text {
@@ -448,56 +402,27 @@ hr {
   line-height: 1.8;
 }
 
-/* Schmale Bildschirme (Tablets & Handys) */
-@media (max-width: 991px) {
-  .about__inner {
-    display: flex;
-    flex-direction: column; 
-    gap: 2rem;
-  }
 
-  .about__photo-wrap {
-    /* Das Bild springt nach oben und nutzt die volle Breite (bis max. 500px), 
-       damit es auf dem Handy richtig schön groß und präsent wirkt */
-    width: 100%;
-    max-width: 500px; 
-    margin: 0 auto;
-    order: -1; /* Garantiert ÜBER dem Text */
-  }
-
-  .about__content {
-    width: 100%;
-  }
-}
-/* =============================================================
+/* -------------------------------------------------------------
    8. SERVICES SECTION (Mein Angebot)
-   ============================================================= */
-
-.services {
-  /*
-    Background image for this section.
-    Recommended: 1920 x 900 px, wide ocean/beach shot, bright and airy.
-    Replace the gradient below with:
-      background-image: url('../assets/services-bg.jpg');
-  */
-  background: linear-gradient(135deg, #e8f4f8 0%, #d8ecf4 100%);
-}
-
+   ------------------------------------------------------------- */
 .services__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  margin-top: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: clamp(1.25rem, 2.5vw, 1.75rem);
+  margin-top: 1.75rem;
+  width: 100%;
 }
 
-/* Individual service card */
 .service-card {
   background: var(--color-white);
   border-radius: var(--radius-md);
-  padding: 2rem 1.75rem;
+  padding: clamp(1.5rem, 3vw, 2.25rem) clamp(1.25rem, 2.5vw, 1.75rem);
   box-shadow: var(--shadow-soft);
   border-top: 3px solid var(--color-ocean);
   transition: transform var(--transition-base), box-shadow var(--transition-base);
+  display: flex;
+  flex-direction: column;
 }
 
 .service-card:hover {
@@ -507,7 +432,7 @@ hr {
 
 .service-card__icon {
   font-size: 1.8rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.85rem;
   display: block;
 }
 
@@ -523,7 +448,7 @@ hr {
   color: var(--color-ocean);
   font-weight: 500;
   letter-spacing: 0.04em;
-  margin-bottom: 1rem;
+  margin-bottom: 0.85rem;
   display: block;
 }
 
@@ -534,27 +459,15 @@ hr {
 }
 
 
-/* =============================================================
+/* -------------------------------------------------------------
    9. METHODOLOGY SECTION (Methodik)
-   ============================================================= */
-
-.methodology {
-  /*
-    Background image.
-    Recommended: 1920 x 900 px, calm water surface with soft light.
-    Replace the gradient below with:
-      background-image: url('../assets/methodology-bg.jpg');
-  */
-  background: linear-gradient(160deg, #c8dde9 0%, #a8c8d8 60%, #90b8cc 100%);
-}
-
-/* Pull-quote styling */
+   ------------------------------------------------------------- */
 .methodology__quote {
   border-left: 3px solid var(--color-ocean);
-  padding: 1.25rem 1.75rem;
+  padding: clamp(1rem, 2.5vw, 1.5rem) clamp(1.25rem, 3vw, 1.75rem);
   background: rgba(58, 124, 165, 0.07);
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  margin: 1.75rem 0;
+  margin: clamp(1.25rem, 3vw, 1.75rem) 0;
 }
 
 .methodology__quote p {
@@ -580,21 +493,9 @@ hr {
 }
 
 
-/* =============================================================
+/* -------------------------------------------------------------
    10. FAQ SECTION
-   ============================================================= */
-
-.faq {
-  /*
-    Background image.
-    Recommended: 1920 x 900 px, gentle waves or shoreline from above.
-    Replace the gradient below with:
-      background-image: url('../assets/faq-bg.jpg');
-  */
-  background: linear-gradient(160deg, #eef5f9 0%, #ddeef6 100%);
-}
-
-/* FAQ accordion list */
+   ------------------------------------------------------------- */
 .faq__list {
   margin-top: 1.5rem;
   list-style: none;
@@ -603,7 +504,6 @@ hr {
   gap: 0.75rem;
 }
 
-/* Each FAQ item */
 .faq__item {
   border: 1px solid var(--color-divider);
   border-radius: var(--radius-sm);
@@ -616,14 +516,13 @@ hr {
   box-shadow: var(--shadow-soft);
 }
 
-/* Clickable question header */
 .faq__question {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 1.1rem 1.5rem;
+  padding: clamp(0.9rem, 2vw, 1.2rem) clamp(1rem, 2.5vw, 1.5rem);
   background: none;
   border: none;
   cursor: pointer;
@@ -639,7 +538,6 @@ hr {
   background: var(--color-sand-light);
 }
 
-/* The +/– toggle icon – SVG-based for reliable centering */
 .faq__icon {
   flex-shrink: 0;
   min-width: 24px;
@@ -675,16 +573,15 @@ hr {
   display: block;
 }
 
-/* Answer container – hidden by default, expanded via JS */
 .faq__answer {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.4s ease, padding 0.3s ease;
-  padding: 0 1.5rem;
+  padding: 0 clamp(1rem, 2.5vw, 1.5rem);
 }
 
 .faq__item.is-open .faq__answer {
-  max-height: 600px; /* large enough for any answer */
+  max-height: 800px;
   padding-bottom: 1.25rem;
 }
 
@@ -696,7 +593,6 @@ hr {
   border-top: 1px solid var(--color-divider);
 }
 
-/* Pricing table inside FAQ answer */
 .faq__pricing {
   margin-top: 0.75rem;
   display: flex;
@@ -712,17 +608,18 @@ hr {
   background: var(--color-sand-light);
   border-radius: var(--radius-sm);
   gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .faq__pricing-label {
   font-size: var(--text-sm);
   color: var(--color-text);
-  flex: 1;
+  flex: 1 1 200px;
 }
 
 .faq__pricing-label strong {
   display: block;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--color-navy);
   margin-bottom: 0.1rem;
 }
@@ -736,29 +633,17 @@ hr {
 }
 
 
-/* =============================================================
+/* -------------------------------------------------------------
    11. CONTACT SECTION (Kontakt)
-   ============================================================= */
-
-.contact {
-  /*
-    Background image.
-    Recommended: 1920 x 1080 px, peaceful beach/ocean at golden hour.
-    Replace the gradient below with:
-      background-image: url('../assets/contact-bg.jpg');
-  */
-  background: linear-gradient(160deg, #1d3d52 0%, #2d5f7a 60%, #3a7ca5 100%);
-}
-
-/* Override overlay for darker contact section */
+   ------------------------------------------------------------- */
 .contact .content-card {
   background: rgba(255, 255, 255, 0.97);
 }
 
 .contact__inner {
   display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 3rem;
+  grid-template-columns: 1.3fr 1fr;
+  gap: clamp(1.5rem, 4vw, 3rem);
   align-items: start;
 }
 
@@ -787,6 +672,7 @@ hr {
   align-items: center;
   gap: 0.75rem;
   font-size: var(--text-base);
+  word-break: break-word;
 }
 
 .contact__info-icon {
@@ -794,11 +680,10 @@ hr {
   flex-shrink: 0;
 }
 
-/* Calendly booking block */
 .contact__calendly {
   background: var(--color-sand-light);
   border-radius: var(--radius-md);
-  padding: 2rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
   text-align: center;
   border: 1px dashed var(--color-divider);
 }
@@ -816,21 +701,10 @@ hr {
   margin-bottom: 1.25rem;
 }
 
-/*
-  CALENDLY BUTTON
-  ===============
-  To connect Calendly:
-  1. Sign up at https://calendly.com and create a 15-minute event type.
-  2. Copy your scheduling link (e.g. https://calendly.com/your-name/15min).
-  3. Replace the href="#" below in index.html with your actual Calendly link.
-  4. Optionally, add Calendly's popup widget by including their script in index.html:
-       <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-       <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-     Then change the button's onclick to:
-       onclick="Calendly.initPopupWidget({url: 'https://calendly.com/your-name/15min'});return false;"
-*/
 .btn-book {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: var(--color-ocean);
   color: var(--color-white);
   font-family: var(--font-body);
@@ -838,12 +712,15 @@ hr {
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  padding: 0.875rem 2rem;
+  padding: 0.875rem clamp(1.25rem, 3vw, 2rem);
+  min-height: 48px;
   border-radius: var(--radius-sm);
   border: none;
   cursor: pointer;
   transition: background var(--transition-fast), transform var(--transition-fast);
   text-decoration: none;
+  text-align: center;
+  box-sizing: border-box;
 }
 
 .btn-book:hover {
@@ -852,27 +729,28 @@ hr {
   transform: translateY(-2px);
 }
 
-/* Contact form (simple mailto-based) */
 .contact__form {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.85rem;
   margin-top: 1.5rem;
+  width: 100%;
 }
 
 .contact__form input,
 .contact__form textarea {
   width: 100%;
-  padding: 0.75rem 1rem;
+  padding: 0.85rem 1rem;
   border: 1px solid var(--color-divider);
   border-radius: var(--radius-sm);
   font-family: var(--font-body);
-  font-size: var(--text-sm);
+  font-size: 1rem; /* 16px to prevent auto zoom on iOS */
   color: var(--color-text);
   background: var(--color-white);
   transition: border-color var(--transition-fast);
   outline: none;
   resize: vertical;
+  box-sizing: border-box;
 }
 
 .contact__form input:focus,
@@ -881,7 +759,7 @@ hr {
 }
 
 .contact__form textarea {
-  min-height: 110px;
+  min-height: 120px;
 }
 
 .contact__form .btn-book {
@@ -890,15 +768,15 @@ hr {
 }
 
 
-/* =============================================================
+/* -------------------------------------------------------------
    12. FOOTER
-   ============================================================= */
-
+   ------------------------------------------------------------- */
 .site-footer {
   background: var(--color-navy);
   color: rgba(255, 255, 255, 0.65);
-  padding: 2rem 0;
+  padding: 2.25rem 0;
   font-size: var(--text-sm);
+  width: 100%;
 }
 
 .site-footer__inner {
@@ -906,7 +784,7 @@ hr {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 1.25rem;
 }
 
 .site-footer__copy {
@@ -932,89 +810,53 @@ hr {
 }
 
 
-/* =============================================================
-   13. RESPONSIVE BREAKPOINTS
-   ============================================================= */
+/* -------------------------------------------------------------
+   13. RESPONSIVE BREAKPOINTS (Mobile & Tablet Optimization)
+   ------------------------------------------------------------- */
 
-/* --- Tablet: up to 900px --- */
-@media (max-width: 900px) {
-  :root {
-    --section-padding-y: 3.5rem;
-  }
-
+/* Tablet & Smaller Desktops (under 960px) */
+@media (max-width: 960px) {
   .about__inner {
     grid-template-columns: 1fr;
+    gap: 2rem;
   }
 
-  .services__grid {
-    grid-template-columns: 1fr;
-  }
-
-  .about__photo {
-    aspect-ratio: 3 / 2;    /* landscape on tablet – more compact */
-    max-width: 400px;
-    margin: 0 auto;
+  .about__photo-wrap {
+    max-width: min(100%, 380px);
+    order: -1;
   }
 
   .contact__inner {
     grid-template-columns: 1fr;
-  }
-
-  .section-with-bg {
-    background-attachment: scroll; /* disable parallax on tablet – avoids jank */
-    height: 900px;
-    margin: 0;     /* Entfernt eventuelle Lücken zwischen den Sektionen */
-    padding: 0;    /* Verhindert, dass Padding die Höhe verändert */
-    background-size: 100% 100%; 
-    background-position: top left;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: center;
+    gap: 2.25rem;
   }
 }
 
-/* --- Mobile: up to 600px --- */
-@media (max-width: 600px) {
-  :root {
-    --section-padding-y: 3rem;
-    --section-padding-x: 1.25rem;
-  }
-
-  html {
-    font-size: 15px;
-  }
-
-  .hero {
-    background-attachment: scroll; /* parallax on mobile causes issues */
-  }
-
+/* Mobile Devices (under 640px) */
+@media (max-width: 640px) {
   .hero__card {
-    padding: 1.75rem 1.5rem;
-    min-width: 0;
-    width: calc(100% - 2.5rem);
+    width: 100%;
   }
 
   .services__grid {
     grid-template-columns: 1fr;
   }
 
-  .faq__question {
-    padding: 1rem 1.1rem;
-  }
-
-  .faq__answer {
-    padding: 0 1.1rem;
+  .contact__form .btn-book,
+  .contact__calendly .btn-book {
+    width: 100%;
   }
 
   .faq__pricing-item {
     flex-direction: column;
-    gap: 0.25rem;
+    gap: 0.35rem;
     align-items: flex-start;
   }
 
   .site-footer__inner {
     flex-direction: column;
     text-align: center;
+    justify-content: center;
   }
 
   .site-footer__links {
