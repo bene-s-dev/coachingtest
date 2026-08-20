@@ -1,4 +1,4 @@
-@import url('fonts.css');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap');
 
 /* =============================================================
    SARAH UNKE COACHING – Main Stylesheet
@@ -1107,6 +1107,7 @@ hr {
 }
 
 /* Centered title above the calendar window in the frosted blur */
+/* Centered title above the calendar window in the frosted blur */
 .calendly-overlay .calendly-popup::before {
   content: 'Termin vereinbaren:' !important;
   display: block !important;
@@ -1120,6 +1121,44 @@ hr {
   text-shadow: 0 2px 14px rgba(10, 30, 45, 0.6), 0 1px 3px rgba(10, 30, 45, 0.4) !important;
   margin-bottom: 0.85rem !important;
   width: 100% !important;
+}
+
+/* Centered loading badge in front of the calendar field (Z-axis) */
+.calendly-overlay .calendly-popup::after {
+  content: 'Lädt...' !important;
+  position: absolute !important;
+  top: 55% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  background: rgba(255, 255, 255, 0.96) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  color: var(--color-navy, #1d3d52) !important;
+  font-family: var(--font-body, 'Jost', sans-serif) !important;
+  font-size: 1.05rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.14em !important;
+  padding: 0.85rem 1.85rem !important;
+  border-radius: 9999px !important;
+  box-shadow: 0 12px 35px rgba(10, 30, 45, 0.25), 0 0 0 1px rgba(58, 124, 165, 0.18) !important;
+  z-index: 1000000 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: opacity 0.3s ease, transform 0.3s ease !important;
+}
+
+/* Active during first 1.5s after launch */
+body.calendly-is-loading .calendly-overlay .calendly-popup::after {
+  opacity: 1 !important;
+  animation: calendlyDots 0.75s infinite linear !important;
+}
+
+@keyframes calendlyDots {
+  0%, 20%   { content: 'Lädt'; }
+  25%, 45%  { content: 'Lädt.'; }
+  50%, 70%  { content: 'Lädt..'; }
+  75%, 95%  { content: 'Lädt...'; }
+  100%      { content: 'Lädt'; }
 }
 
 .calendly-overlay .calendly-popup .calendly-popup-content {

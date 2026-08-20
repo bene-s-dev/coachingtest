@@ -344,6 +344,12 @@ function initSarahWebsite() {
     function triggerCalendly(e) {
       if (e) e.preventDefault();
 
+      // 1.5s animated loading indicator
+      document.body.classList.add('calendly-is-loading');
+      setTimeout(function () {
+        document.body.classList.remove('calendly-is-loading');
+      }, 1500);
+
       if (window.Calendly) {
         window.Calendly.initPopupWidget({ url: CALENDLY_URL });
       } else {
