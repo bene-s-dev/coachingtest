@@ -1,24 +1,8 @@
+@import url('fonts.css');
+
 /* =============================================================
    SARAH UNKE COACHING – Main Stylesheet
-   =============================================================
-
-   TABLE OF CONTENTS:
-   1. CSS Variables (colors, fonts, fluid spacing & typography)
-   2. Google Fonts Import
-   3. Reset & Base Styles
-   4. Scalable Container & Utility Classes
-   5. Hero Section
-   6. Welcome Section
-   7. About Section
-   8. Services (Angebot) Section
-   9. Methodology (Methodik) Section
-   10. FAQ Section
-   11. Contact Section
-   12. Footer
-   13. Responsive Breakpoints
-
    ============================================================= */
-
 
 /* -------------------------------------------------------------
    1. CSS VARIABLES
@@ -74,15 +58,8 @@
   --hero-overlay: rgba(10, 30, 45, 0.35);
 }
 
-
 /* -------------------------------------------------------------
-   2. LOCAL FONTS (100% DSGVO-konform, kein Google CDN)
-   ------------------------------------------------------------- */
-@import url('fonts.css');
-
-
-/* -------------------------------------------------------------
-   3. RESET & BASE STYLES
+   2. RESET & BASE STYLES
    ------------------------------------------------------------- */
 *, *::before, *::after {
   box-sizing: border-box;

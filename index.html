@@ -38,8 +38,8 @@
   <link rel="manifest" href="assets/site.webmanifest">
   <link rel="shortcut icon" href="assets/favicon.ico">
 
-  <!-- Google Fonts are loaded inside style.css via @import -->
-
+  <!-- Local Typography (100% DSGVO-konform) -->
+  <link rel="stylesheet" href="css/fonts.css" />
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/nav.css" />
@@ -874,6 +874,8 @@
           });
         });
       }
+    } catch (e) {}
+
     // 8. CALENDLY POPUP OVERLAY
     try {
       const openBtn = document.getElementById('open-calendly-btn');
