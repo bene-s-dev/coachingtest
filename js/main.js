@@ -160,4 +160,94 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+
+  // ─────────────────────────────────────────────
+  // 6. SUBTLE SCROLL REVEAL ANIMATION
+  // ─────────────────────────────────────────────
+  const revealElements = document.querySelectorAll(
+    '.welcome .container, .content-card, .service-card, .methodology__quote, .faq__item, .contact__inner > *'
+  );
+
+  revealElements.forEach(function (el) {
+    el.classList.add('reveal-on-scroll');
+  });
+
+  const revealObserver = new IntersectionObserver(
+    function (entries, observer) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          observer.unobserve(entry.target); // Animate once
+        }
+      });
+    },
+    {
+      rootMargin: '0px 0px -40px 0px',
+      threshold: 0.08,
+    }
+  );
+
+  revealElements.forEach(function (el) {
+    revealObserver.observe(el);
+  });
+
+
+  // ─────────────────────────────────────────────
+  // 7. CONTACT FORM AJAX SUBMISSION (FormSubmit.co)
+  // ─────────────────────────────────────────────
+  const contactForm = document.getElementById('contact-form');
+  const submitBtn   = document.getElementById('contact-submit-btn');
+  const statusBox   = document.getElementById('contact-status');
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      if (!submitBtn) return;
+      const originalBtnText = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Wird gesendet...';
+
+      if (statusBox) {
+        statusBox.style.display = 'none';
+        statusBox.className = 'contact__form-status';
+      }
+
+      const formData = new FormData(contactForm);
+
+      fetch('https://formsubmit.co/ajax/mail@su-coaching.de', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json'
+        },
+        body: formData
+      })
+      .then(function (res) {
+        if (!res.ok) throw new Error('Fehler beim Senden');
+        return res.json();
+      })
+      .then(function (data) {
+        contactForm.reset();
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalBtnText;
+
+        if (statusBox) {
+          statusBox.textContent = 'Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet. Ich melde mich schnellstmöglich bei Ihnen.';
+          statusBox.classList.add('is-success');
+          statusBox.style.display = 'block';
+        }
+      })
+      .catch(function (err) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalBtnText;
+
+        if (statusBox) {
+          statusBox.textContent = 'Es gab ein Problem beim Senden. Bitte schreiben Sie mir alternativ direkt an mail@su-coaching.de.';
+          statusBox.classList.add('is-error');
+          statusBox.style.display = 'block';
+        }
+      });
+    });
+  }
+
 }); // end DOMContentLoaded
