@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Impressum – Sarah Unke Coaching</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/svg+xml" href="assets/orca.svg" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/nav.css" />
+
+  <style>
+    /* ============================================================
+       Simple layout for legal pages (Impressum / Datenschutz)
+       ============================================================ */
+    .legal-page {
+      min-height: 100vh;
+      padding-top: 100px; /* offset for fixed nav */
+      padding-bottom: 4rem;
+      background-color: var(--color-sand-light);
+    }
+
+    .legal-card {
+      background: var(--color-white);
+      border-radius: var(--radius-md);
+      padding: clamp(2rem, 5vw, 3.5rem);
+      box-shadow: var(--shadow-soft);
+      margin-top: 2rem;
+    }
+
+    .legal-card h1 {
+      font-size: var(--text-2xl);
+      margin-bottom: 0.5rem;
+    }
+
+    .legal-card h2 {
+      font-size: var(--text-lg);
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      color: var(--color-navy);
+    }
+
+    .legal-card p,
+    .legal-card address {
+      font-style: normal;
+      font-size: var(--text-base);
+      line-height: 1.8;
+      color: var(--color-text);
+      margin-bottom: 0.75rem;
+    }
+
+    .legal-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: var(--text-sm);
+      color: var(--color-ocean);
+      margin-top: 2rem;
+    }
+
+    .legal-back:hover { color: var(--color-navy); }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation (same as main page) -->
+  <nav class="site-nav nav--scrolled" aria-label="Hauptnavigation">
+    <div class="site-nav__inner">
+      <a href="index.html" class="site-nav__logo" aria-label="Zurück zur Startseite">
+        <img src="assets/orca.svg" class="site-nav__logo-icon" alt="" aria-hidden="true" />
+          <ellipse cx="50" cy="55" rx="30" ry="18" />
+          <polygon points="50,20 38,42 62,42" />
+          <polygon points="22,60 10,75 28,68" />
+          <polygon points="78,60 90,75 72,68" />
+          <circle cx="62" cy="50" r="3" fill="white" />
+          <ellipse cx="36" cy="58" rx="10" ry="6" fill="white" opacity="0.7"/>
+        </svg>
+        <span class="site-nav__logo-text">Sarah Unke</span>
+      </a>
+      <ul class="site-nav__links">
+        <li><a href="index.html">← Zurück zur Website</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="legal-page">
+    <div class="container">
+      <div class="legal-card">
+
+        <h1>Impressum</h1>
+
+        <!-- ========================================================
+          IMPRESSUM CONTENT
+          ========================================================
+          IMPORTANT: Fill in your real details below.
+          German law (§ 5 TMG) requires the following information
+          for commercial/business websites.
+
+          If you are unsure what to fill in, consult a lawyer or use
+          a generator like: https://www.e-recht24.de/impressum-generator.html
+        ======================================================== -->
+
+        <h2>Angaben gemäß § 5 TMG</h2>
+        <address>
+          <!-- TODO: Replace with your real name and address -->
+          Sarah Unke<br />
+          [Straße und Hausnummer]<br />
+          [PLZ] [Ort]<br />
+          Deutschland
+        </address>
+
+        <h2>Kontakt</h2>
+        <p>
+          Telefon: <a href="tel:+4901772307734">0177 230 7734</a><br />
+          E-Mail: <a href="mailto:mail@su-coaching.de">mail@su-coaching.de</a>
+        </p>
+
+        <!-- ========================================================
+          BERUFSBEZEICHNUNG / KAMMER
+          If you hold a regulated professional title or are a member
+          of a professional association, add it here.
+          Example:
+            <h2>Berufsbezeichnung und berufsrechtliche Regelungen</h2>
+            <p>Berufsbezeichnung: Systemischer Coach (DGSF)<br />
+            Zuständige Kammer: ...</p>
+        ======================================================== -->
+
+        <h2>Umsatzsteuer-Identifikationsnummer</h2>
+        <p>
+          <!-- TODO: Add your USt-IdNr. if applicable, or remove this section -->
+          Sofern vorhanden: USt-IdNr. gemäß § 27a UStG: [Ihre USt-IdNr.]
+        </p>
+
+        <h2>Streitschlichtung</h2>
+        <p>
+          Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:
+          <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer">
+            https://ec.europa.eu/consumers/odr/
+          </a>
+        </p>
+        <p>
+          Ich bin nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer
+          Verbraucherschlichtungsstelle teilzunehmen.
+        </p>
+
+        <h2>Haftung für Inhalte</h2>
+        <p>
+          Als Diensteanbieter bin ich gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den
+          allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG bin ich als Diensteanbieter jedoch nicht
+          verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen
+          zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
+        </p>
+
+        <h2>Urheberrecht</h2>
+        <p>
+          Die durch die Seitenbetreiberin erstellten Inhalte und Werke auf diesen Seiten unterliegen dem
+          deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung
+          außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung der Autorin.
+        </p>
+
+        <a href="index.html" class="legal-back">← Zurück zur Startseite</a>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__inner">
+        <p class="site-footer__copy">&copy; 2025 Sarah Unke · Coaching Praxis</p>
+        <ul class="site-footer__links">
+          <li><a href="impressum.html">Impressum</a></li>
+          <li><a href="datenschutz.html">Datenschutz</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

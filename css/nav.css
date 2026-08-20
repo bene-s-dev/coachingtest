@@ -1,0 +1,201 @@
+/* =============================================================
+   SARAH UNKE COACHING – Navigation Stylesheet
+   =============================================================
+
+   This file controls only the top navigation bar.
+   The shrinking behavior when scrolling is handled by js/main.js
+   which adds/removes the class .nav--scrolled on the <nav> element.
+
+   TO ADD A NEW NAV LINK:
+   1. Add a new <li><a href="#section-id">Label</a></li> in index.html
+   2. Add a matching id="section-id" to the target section in index.html.
+   That's it – styling is automatic.
+
+   ============================================================= */
+
+/* --- Base nav styles (large, at top of page) --- */
+.site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+
+  /* Initial state: white bar with subtle shadow */
+  padding: 1.25rem clamp(1.5rem, 4vw, 3rem);
+  background: var(--color-white);
+  box-shadow: 0 1px 12px rgba(29, 61, 82, 0.08);
+  transition:
+    padding        0.4s ease,
+    background     0.4s ease,
+    backdrop-filter 0.4s ease,
+    box-shadow     0.4s ease;
+}
+
+/* Inner wrapper: logo left, links right */
+.site-nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* --- Logo (orca icon) ---
+   The orca is loaded as a plain <img src="assets/orca.svg">.
+   Width/height are controlled here; the image scales automatically.
+   To swap the icon: just replace assets/orca.svg with your file.        --- */
+.site-nav__logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.site-nav__logo-icon {
+  width: 40px;
+  height: 40px;
+  transition: width 0.4s ease, height 0.4s ease;
+  flex-shrink: 0;
+}
+
+/* Optional: small text next to the logo icon */
+.site-nav__logo-text {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-navy);
+  transition: color 0.4s ease, font-size 0.4s ease;
+  display: none;
+}
+
+@media (min-width: 700px) {
+  .site-nav__logo-text {
+    display: block;
+  }
+}
+
+/* --- Navigation links --- */
+.site-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  list-style: none;
+  flex-wrap: wrap; /* wrap on small screens if needed */
+  justify-content: flex-end;
+}
+
+.site-nav__links a {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radius-sm);
+  transition:
+    color            0.25s ease,
+    background       0.25s ease,
+    font-size        0.4s ease;
+  white-space: nowrap;
+}
+
+.site-nav__links a:hover {
+  color: var(--color-navy);
+  background: var(--color-sand-light);
+}
+
+/* Active link highlight */
+.site-nav__links a.is-active {
+  color: var(--color-navy);
+  background: var(--color-sand-light);
+}
+
+/* --- Hamburger menu button (mobile only) --- */
+.site-nav__toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.3rem;
+  color: var(--color-navy);
+  transition: color 0.3s ease;
+}
+
+.site-nav__toggle svg {
+  width: 26px;
+  height: 26px;
+  display: block;
+}
+
+/* --- SCROLLED STATE (.nav--scrolled added by JS) ---
+   Applied once the user scrolls more than ~60px down.
+   Nav stays white but shrinks and gets a stronger shadow.
+------------------------------------------------------------- */
+.nav--scrolled {
+  padding: 0.55rem clamp(1.5rem, 4vw, 3rem);
+  background: var(--color-white);
+  box-shadow: 0 2px 20px rgba(29, 61, 82, 0.12);
+}
+
+/* Orca icon: slightly smaller when scrolled */
+.nav--scrolled .site-nav__logo-icon {
+  width: 28px;
+  height: 28px;
+}
+
+/* Links slightly smaller when scrolled */
+.nav--scrolled .site-nav__links a {
+  font-size: 0.77rem;
+}
+
+/* Logo text slightly smaller */
+.nav--scrolled .site-nav__logo-text {
+  font-size: 0.95rem;
+}
+
+/* --- MOBILE NAV (max 768px) --- */
+@media (max-width: 768px) {
+  /* Show hamburger button */
+  .site-nav__toggle {
+    display: block;
+  }
+
+  /* Links hidden by default on mobile, shown when menu is open */
+  .site-nav__links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: var(--color-white);
+    padding: 0.5rem 0 1rem;
+    border-top: 1px solid var(--color-divider);
+    box-shadow: 0 8px 20px rgba(29, 61, 82, 0.10);
+    flex-wrap: nowrap;
+  }
+
+  /* When .nav--open is added by JS, show the links */
+  .nav--open .site-nav__links {
+    display: flex;
+  }
+
+  .site-nav__links a {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0;
+    font-size: 0.85rem;
+  }
+
+  .site-nav__links a:hover {
+    background: var(--color-sand-light);
+  }
+}

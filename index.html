@@ -1,2 +1,642 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-hi
+  <!-- ============================================================
+    PAGE TITLE
+    Change this to update the browser tab label and SEO title.
+  ============================================================= -->
+  <title>Sarah Unke – Coaching Praxis</title>
+  <meta name="description" content="Systemisches Coaching mit Sarah Unke. Business Coaching, Life Coaching und Einzelberatung – online, flexibel und vertraulich." />
+
+  <!-- ============================================================
+    FAVICON
+    The orca SVG is used directly as favicon (supported in modern browsers).
+    For maximum compatibility, also add a favicon.ico (32×32 px) to assets/.
+    To generate one: https://favicon.io/favicon-converter/
+  ============================================================= -->
+  <link rel="icon" type="image/svg+xml" href="assets/orca.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+  <link rel="manifest" href="assets/site.webmanifest">
+  <link rel="shortcut icon" href="assets/favicon.ico">
+
+  <!-- Google Fonts are loaded inside style.css via @import -->
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/nav.css" />
+
+  <!-- ============================================================
+    CALENDLY (optional – uncomment when ready to connect)
+    1. Sign up at https://calendly.com
+    2. Create a 15-minute event type
+    3. Uncomment the two lines below and replace YOUR_CALENDLY_URL
+    4. In the contact section below, update the btn-book href and/or
+       add onclick="Calendly.initPopupWidget({url:'YOUR_CALENDLY_URL'});return false;"
+  ============================================================= -->
+  <!-- <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet"> -->
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+</head>
+
+<body>
+
+  <!-- ============================================================
+    NAVIGATION
+    ============================================================
+    - Items in .site-nav__links with href="#section-id" will smooth-scroll
+      to the matching section.
+    - To add a new nav item: copy a <li> and change the href and label.
+    - To remove an item: delete the <li>.
+    - The active state (highlight) is handled automatically by JS.
+  ============================================================= -->
+  <nav class="site-nav" aria-label="Hauptnavigation">
+    <div class="site-nav__inner">
+
+      <!-- Logo: orca icon (left side of nav) -->
+      <a href="#" class="site-nav__logo" aria-label="Sarah Unke – Zurück nach oben">
+        <!-- ORCA ICON IN NAV: just replace assets/orca.svg with your file -->
+        <img src="assets/orca.svg" class="site-nav__logo-icon" alt="" aria-hidden="true" />
+        <span class="site-nav__logo-text">SARAH UNKE</span>
+      </a>
+
+      <!-- Hamburger toggle (only visible on mobile) -->
+      <button class="site-nav__toggle" aria-label="Menü öffnen / schließen" aria-expanded="false">
+        <!-- Hamburger icon (shown when menu is closed) -->
+        <svg id="hamburger-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <!-- Close icon (shown when menu is open – hidden by JS initially) -->
+        <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" style="display:none;">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <!-- Nav links -->
+      <ul class="site-nav__links">
+        <!-- NOTE: "Herzlich Willkommen" is intentionally NOT linked here (as requested) -->
+        <li><a href="#ueber-mich">Über mich</a></li>
+        <li><a href="#angebot">Angebot</a></li>
+        <li><a href="#methodik">Methodik</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+
+    </div>
+  </nav><!-- /site-nav -->
+
+
+  <!-- ============================================================
+    HERO SECTION
+    ============================================================
+    Background image: replace the inline style below with your photo.
+    Recommended dimensions: 1920 × 1080 px (landscape, beach/ocean shot).
+
+    Example:
+      <section class="hero" style="background-image: url('assets/hero-beach.jpg');">
+
+    The dark overlay (opacity) is defined via --hero-overlay in style.css.
+    Increase the opacity value (e.g. rgba(10,30,45,0.5)) for more contrast.
+  ============================================================= -->
+  <section class="hero"
+    style="background-image: url('assets/hero-beach.webp');"
+    aria-label="Hero">
+
+    <!-- White card in the center of the hero -->
+    <div class="hero__card">
+
+      <!-- Row: orca icon + name in small caps -->
+      <div class="hero__name-row">
+        <!-- ORCA ICON IN HERO: just replace assets/orca.svg with your file -->
+        <img src="assets/orca.svg" class="hero__orca" alt="" aria-hidden="true" />
+
+        <h1 class="hero__name">SARAH UNKE</h1>
+      </div>
+
+      <!-- Thin divider line -->
+      <div class="hero__divider" aria-hidden="true"></div>
+
+      <!-- Subtitle -->
+      <p class="hero__subtitle">Coaching Praxis</p>
+
+    </div><!-- /hero__card -->
+
+    <!-- Scroll down hint -->
+    <div class="hero__scroll-hint" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+      </svg>
+    </div>
+
+  </section><!-- /hero -->
+
+
+  <!-- ============================================================
+    WELCOME SECTION (Herzlich Willkommen)
+    ============================================================
+    This section is intentionally NOT linked in the nav (as requested).
+    It sits right below the hero and is the first thing visitors read.
+  ============================================================= -->
+  <section class="section welcome" id="willkommen">
+    <div class="container">
+
+      <h2 class="welcome__heading">Herzlich Willkommen</h2>
+
+      <div class="welcome__text">
+        <p>
+          Manchmal stehen wir im Leben an einem Punkt, an dem der Alltag uns fest im Griff hat, die Sicht getrübt ist oder wir einfach feststecken. Ich lade Sie ein, hier kurz den sprichwörtlichen Anker zu werfen und durchzuatmen.
+        </p>
+        <p>
+          Mein Ansatz ist einfach: Wir schauen uns gemeinsam an, was ist. Ohne Bewertung und mit viel Neugier. Manchmal braucht es dafür Mut, manchmal eine neue Perspektive und fast immer ein Lachen an der richtigen Stelle. Egal, ob Sie Klarheit in einer beruflichen Umbruchphase suchen oder familiäre Knoten lösen möchten – Sie bestimmen das Ziel und das Tempo. Ich sorge dafür, dass wir auf dem richtigen Weg dorthin bleiben.
+        </p>
+      </div>
+
+    </div>
+  </section><!-- /welcome -->
+
+
+  <!-- ============================================================
+    ABOUT SECTION (Über mich)
+    ============================================================
+    id="ueber-mich" matches the nav link href="#ueber-mich".
+
+    PHOTO:
+    Replace the .about__photo div with:
+      <img src="assets/sarah-portrait.jpg" alt="Sarah Unke" class="about__photo" />
+    Recommended photo size: 500 × 650 px (portrait).
+
+    BACKGROUND:
+    Replace the inline style below with your own image:
+      style="background-image: url('assets/about-bg.jpg');"
+    Recommended: 1920 × 900 px, coastal/water scene.
+  ============================================================= -->
+  <div class="parallax-wrapper">
+    <!--
+    <section class="section section-with-bg about" id="ueber-mich"
+      style="background-image: url('assets/strip0.jpg');">
+    -->
+    <section class="section-parallax about" id="ueber-mich">
+      <div class="container">
+        <div class="content-card">
+          <div class="about__inner">
+
+            <!-- Portrait photo (placeholder) -->
+            <div class="about__photo-wrap">
+              <!--
+                PORTRAIT PHOTO PLACEHOLDER
+                ===========================
+                Replace this entire <div class="about__photo"> with:
+                  <img src="assets/sarah-portrait.jpg"
+                       alt="Sarah Unke – systemischer Coach"
+                       class="about__photo" />
+                Recommended dimensions: 500 × 650 px (portrait orientation).
+              -->
+              <img src="assets/sarah-unke.webp"
+                   alt="Sarah Unke – systemischer Coach"
+                   class="about__photo" />
+            </div><!-- /about__photo-wrap -->
+
+            <!-- Text content -->
+            <div class="about__content">
+              <h2 class="section-title">Über mich</h2>
+
+              <div class="about__text">
+                <p>
+                  In meine Arbeit fließen fundierte Erfahrung und eine klare systemische Haltung ein. Seit 2022 berate ich in einem globalen Wirtschaftsunternehmen (BG prevent) Führungskräfte und Mitarbeitende im betrieblichen Eingliederungsmanagement. Diese Schnittstelle von Organisation, Kommunikation und individueller Entwicklung prägt meine Arbeitsweise: strukturiert, zielorientiert und stets mit dem Blick auf das Gesamtsystem.
+                </p>
+                <p>
+                  Was mich abseits der Arbeit ausmacht? Ich bin am liebsten draußen in Bewegung – ob auf ausgedehnten Radreisen durch die Natur oder beim Bahnen ziehen im Wasser.
+                </p>
+              </div>
+            </div><!-- /about__content -->
+
+          </div><!-- /about__inner -->
+        </div><!-- /content-card -->
+      </div>
+    </section><!-- /about -->
+
+
+    <!-- ============================================================
+      SERVICES SECTION (Mein Angebot)
+      ============================================================
+      id="angebot" matches the nav link href="#angebot".
+
+      TO ADD A NEW SERVICE:
+      Copy one <article class="service-card"> block and adjust the
+      icon, title, tagline and text. The grid adjusts automatically.
+
+      BACKGROUND:
+      Replace the inline style with your own image:
+        style="background-image: url('assets/services-bg.jpg');"
+      Recommended: 1920 × 900 px, wide beach/ocean, bright and airy.
+    ============================================================= -->
+    <!--
+    <section class="section section-with-bg services" id="angebot"
+      style="background-image: url('assets/strip1.jpg');">
+    -->
+    <section class="section-parallax services" id="angebot">
+      <div class="container">
+        <div class="content-card">
+
+          <h2 class="section-title">Mein Angebot</h2>
+
+          <div class="services__grid">
+
+            <!-- Service 1: Business Coaching -->
+            <article class="service-card">
+              <span class="service-card__icon" aria-hidden="true">🎯</span>
+              <h3 class="service-card__title">Business Coaching</h3>
+              <span class="service-card__tagline">Berufliche Rollen stärken und Barrieren abbauen.</span>
+              <p class="service-card__text">
+                Der Arbeitsalltag fordert uns täglich heraus – sei es in der Kommunikation mit dem Team, in der Führungsrolle oder bei der Bewältigung komplexer Organisationsstrukturen. Ich unterstütze Sie dabei, Ihre beruflichen Kompetenzen zu erweitern, Konflikte konstruktiv zu lösen und auch in stressigen Phasen gesund und handlungsfähig zu bleiben.
+              </p>
+            </article>
+
+            <!-- Service 2: Life Coaching -->
+            <article class="service-card">
+              <span class="service-card__icon" aria-hidden="true">⚖️</span>
+              <h3 class="service-card__title">Life Coaching</h3>
+              <span class="service-card__tagline">Potenziale entfalten und Klarheit finden.</span>
+              <p class="service-card__text">
+                Hier ist Raum für Ihre persönliche Weiterentwicklung. Wir werfen einen Blick auf Ihre Ziele, Ihre Bedürfnisse und Ihre Achtsamkeit im Alltag. Wenn Sie starre, liebgewonnene Konzepte hinterfragen und neue Wege zu mehr Lebensqualität und innerer Zufriedenheit einschlagen möchten, begleite ich Sie Schritt für Schritt.
+              </p>
+            </article>
+
+            <!-- Service 3: Einzelberatung -->
+            <article class="service-card">
+              <span class="service-card__icon" aria-hidden="true">🌿</span>
+              <h3 class="service-card__title">Einzelberatung</h3>
+              <span class="service-card__tagline">Orientierung in akuten Umbruchphasen.</span>
+              <p class="service-card__text">
+                Das Leben verläuft selten geradlinig. Wenn Sie feststecken oder Sie vor einer schwierigen Entscheidung stehen, ordnen wir gemeinsam das Chaos. Ohne Bewertung, aber mit viel Neugier und bewährten systemischen Methoden bringen wir Struktur in Ihre Gedanken und aktivieren Ihre eigenen Kräfte.
+              </p>
+            </article>
+
+          </div><!-- /services__grid -->
+
+        </div><!-- /content-card -->
+      </div>
+    </section><!-- /services -->
+
+
+    <!-- ============================================================
+      METHODOLOGY SECTION (Methodik)
+      ============================================================
+      id="methodik" matches the nav link href="#methodik".
+
+      BACKGROUND:
+      Replace the inline style with your own image:
+        style="background-image: url('assets/methodology-bg.jpg');"
+      Recommended: 1920 × 900 px, calm water surface.
+    ============================================================= -->
+    <!--
+    <section class="section section-with-bg methodology" id="methodik"
+      style="background-image: url('assets/strip2.jpg');">
+    -->
+    <section class="section-parallax methodology" id="methodik">
+      <div class="container">
+        <div class="content-card">
+
+          <h2 class="section-title">Methodik</h2>
+
+          <p class="methodology__text" style="font-weight:500; color: var(--color-navy);">
+            Der systemische Blick: Das große Ganze verstehen.
+          </p>
+
+          <!-- Pull-quote -->
+          <blockquote class="methodology__quote">
+            <p>„Der Glaube, dass es nur eine einzige Wirklichkeit gibt, ist die gefährlichste Selbsttäuschung.“</p>
+            <cite>– Paul Watzlawick</cite>
+          </blockquote>
+
+          <div class="methodology__text">
+            <p>
+              Kennen Sie das Gefühl, sich im Kreis zu drehen oder in einer Situation festzustecken, die scheinbar keinen Ausweg bietet? Oft glauben wir dann unweigerlich, dass es nur diese eine, festgefahrene Realität gibt und wir uns oder unser Leben komplett ändern müssen. Der systemische Ansatz setzt genau hier an: Es geht nicht darum, alles auf den Kopf zu stellen, sondern einen Schritt zurückzutreten und den eigenen Blickwinkel zu weiten.
+            </p>
+            <p>
+              Um das zu tun, betrachten wir die Dinge nie isoliert. Stellen Sie sich Ihr Leben oder Ihren Berufsalltag wie ein Mobile vor: Wenn man ein einziges Element bewegt, schwingt das gesamte Konstrukt mit. Deshalb schauen wir gemeinsam auf das große Ganze – auf Ihr Umfeld, Ihre Beziehungen und die Dynamiken, in denen Sie sich bewegen.
+            </p>
+          </div>
+
+        </div><!-- /content-card -->
+      </div>
+    </section><!-- /methodology -->
+
+
+    <!-- ============================================================
+      FAQ SECTION
+      ============================================================
+      id="faq" matches the nav link href="#faq".
+
+      FAQ ACCORDION:
+      - Clicking a question expands its answer automatically (handled by JS).
+      - To add a new FAQ: copy any <li class="faq__item"> block and edit the text.
+      - To remove: delete the <li> block.
+
+      BACKGROUND:
+      Replace the inline style with your own image:
+        style="background-image: url('assets/faq-bg.jpg');"
+      Recommended: 1920 × 900 px, shoreline from above or waves.
+    ============================================================= -->
+    <!--
+    <section class="section section-with-bg faq" id="faq"
+      style="background-image: url('assets/strip3.jpg');">
+    -->
+    <section class="section-parallax faq" id="faq">
+      <div class="container">
+        <div class="content-card">
+
+          <h2 class="section-title">Häufig gestellte Fragen</h2>
+
+          <ul class="faq__list">
+
+            <!-- FAQ 1 -->
+            <li class="faq__item">
+              <button class="faq__question" aria-expanded="false">
+                <span>Wie lernen wir uns kennen?</span>
+                <span class="faq__icon" aria-hidden="true">
+                <svg class="icon-plus" viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg>
+                <svg class="icon-minus" viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><line x1="1" y1="6" x2="11" y2="6"/></svg>
+              </span>
+              </button>
+              <div class="faq__answer" role="region">
+                <p>
+                  Alles beginnt mit einem unverbindlichen und kostenfreien Kennenlerngespräch von etwa 15 Minuten.
+                </p>
+              </div>
+            </li>
+
+            <!-- FAQ 2 -->
+            <li class="faq__item">
+              <button class="faq__question" aria-expanded="false">
+                <span>Was passiert in einem Coaching?</span>
+                <span class="faq__icon" aria-hidden="true">
+                <svg class="icon-plus" viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg>
+                <svg class="icon-minus" viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><line x1="1" y1="6" x2="11" y2="6"/></svg>
+              </span>
+              </button>
+              <div class="faq__answer" role="region">
+                <p>
+                  Mein Coaching basiert auf systemisch-lösungsorientierten Methoden. Durch gezielte Fragen setzen wir Impulse, aktivieren Prozesse und entwickeln nachhaltige Lösungen für Ihre Anliegen. In einem geschützten Raum erarbeiten wir gemeinsam konkrete Schritte, die wir regelmäßig evaluieren und anpassen.
+                </p>
+              </div>
+            </li>
+
+            <!-- FAQ 3 -->
+            <li class="faq__item">
+              <button class="faq__question" aria-expanded="false">
+                <span>Wie läuft die weitere Zusammenarbeit ab?</span>
+                <span class="faq__icon" aria-hidden="true">
+                <svg class="icon-plus" viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg>
+                <svg class="icon-minus" viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><line x1="1" y1="6" x2="11" y2="6"/></svg>
+              </span>
+              </button>
+              <div class="faq__answer" role="region">
+                <p>
+                  Wenn es für beide Seiten passt, starten wir mit einem ausführlichen Erstgespräch. Die weiteren Sitzungen finden in der Regel in einem Rhythmus von zwei bis vier Wochen statt. Oft bewirken zielgenaue Impulse schon in wenigen Stunden sehr viel, bewährt hat sich aber auch eine kontinuierliche Begleitung über etwa sechs monatliche Module.
+                </p>
+              </div>
+            </li>
+
+            <!-- FAQ 4 – Pricing -->
+            <li class="faq__item">
+              <button class="faq__question" aria-expanded="false">
+                <span>Was kostet ein Coaching?</span>
+                <span class="faq__icon" aria-hidden="true">
+                <svg class="icon-plus" viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg>
+                <svg class="icon-minus" viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><line x1="1" y1="6" x2="11" y2="6"/></svg>
+              </span>
+              </button>
+              <div class="faq__answer" role="region">
+                <p>Das Honorar wird bequem auf Rechnung nach dem jeweiligen Termin gezahlt:</p>
+
+                <!-- Pricing table -->
+                <div class="faq__pricing">
+
+                  <div class="faq__pricing-item">
+                    <div class="faq__pricing-label">
+                      <strong>Erstgespräch (120 Min.)</strong>
+                      Ausführliche systemische Auftragsklärung. Wir nehmen uns die Zeit, Ihre aktuelle Situation genau zu betrachten und das konkrete Ziel unserer Zusammenarbeit klar zu definieren.
+                    </div>
+                    <div class="faq__pricing-price">120 €</div>
+                  </div>
+
+                  <div class="faq__pricing-item">
+                    <div class="faq__pricing-label">
+                      <strong>Folgegespräche (60 Min.)</strong>
+                      Regelmäßige Sitzungen im vereinbarten Rhythmus.
+                    </div>
+                    <div class="faq__pricing-price">100 €</div>
+                  </div>
+
+                </div><!-- /faq__pricing -->
+              </div>
+            </li>
+
+            <!-- FAQ 5 -->
+            <li class="faq__item">
+              <button class="faq__question" aria-expanded="false">
+                <span>Wo finden die Termine statt?</span>
+                <span class="faq__icon" aria-hidden="true">
+                <svg class="icon-plus" viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg>
+                <svg class="icon-minus" viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><line x1="1" y1="6" x2="11" y2="6"/></svg>
+              </span>
+              </button>
+              <div class="faq__answer" role="region">
+                <p>
+                  Wir treffen uns im digitalen Raum. Die Beratung findet zu 100 % online über Google Meet statt. Das erspart Ihnen Anfahrtswege, Sie können in Ihrer vertrauten, geschützten Umgebung bleiben und Termine auch bei einem vollen Alltag flexibel wahrnehmen.
+                </p>
+              </div>
+            </li>
+
+            <!-- FAQ 6 -->
+            <li class="faq__item">
+              <button class="faq__question" aria-expanded="false">
+                <span>Wird die Beratung irgendwo aktenkundig?</span>
+                <span class="faq__icon" aria-hidden="true">
+                <svg class="icon-plus" viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg>
+                <svg class="icon-minus" viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><line x1="1" y1="6" x2="11" y2="6"/></svg>
+              </span>
+              </button>
+              <div class="faq__answer" role="region">
+                <p>
+                  Nein. Die Beratung ist eine professionelle Wegbegleitung zur Weiterentwicklung, aber keine psychotherapeutische Heilbehandlung. Da es sich um eine private Dienstleistung handelt, ist unsere Zusammenarbeit absolut vertraulich und taucht in keiner Krankenkassenakte auf. Für bestimmte Versicherungen oder berufliche Pläne ist das ein entscheidender Vorteil.
+                </p>
+              </div>
+            </li>
+
+          </ul><!-- /faq__list -->
+
+        </div><!-- /content-card -->
+      </div>
+    </section><!-- /faq -->
+
+
+    <!-- ============================================================
+      CONTACT SECTION (Kontakt)
+      ============================================================
+      id="kontakt" matches the nav link href="#kontakt".
+
+      CALENDLY BOOKING BUTTON:
+      - Replace href="#" with your actual Calendly link, e.g.:
+          href="https://calendly.com/su-coaching/15min"
+      - Or use the popup widget (see comments in style.css and head).
+
+      CONTACT FORM:
+      - The form currently uses a mailto: link (opens the user's email client).
+      - For a real backend form, replace the form's action/method with your
+        own form handling (e.g. Formspree, Netlify Forms, etc.).
+      - Example with Formspree:
+          <form action="https://formspree.io/f/YOUR_ID" method="POST">
+
+      BACKGROUND:
+      Replace the inline style with your own image:
+        style="background-image: url('assets/contact-bg.jpg');"
+      Recommended: 1920 × 1080 px, beach at golden hour.
+    ============================================================= -->
+    <!--
+    <section class="section section-with-bg contact" id="kontakt"
+      style="background-image: url('assets/strip4.jpg');">
+    -->
+    <section class="section-parallax contact" id="kontakt">
+      <div class="container">
+        <div class="content-card">
+
+          <h2 class="section-title">Kontakt</h2>
+
+          <div class="contact__inner">
+
+            <!-- Left column: info + contact details -->
+            <div>
+              <p class="contact__subheading">Lassen Sie uns ins Gespräch kommen</p>
+              <p>
+                Ich freue mich darauf, Sie kennenzulernen! Vereinbaren Sie gerne direkt einen Termin für unser kostenfreies 15-minütiges Kennenlerngespräch – oder schreiben Sie mir ganz unkompliziert, wenn Sie vorab noch eine Frage haben.
+              </p>
+
+              <div class="contact__info">
+
+                <div class="contact__info-item">
+                  <span class="contact__info-icon" aria-hidden="true">📞</span>
+                  <a href="tel:+4901772307734">0177 230 7734</a>
+                </div>
+
+                <div class="contact__info-item">
+                  <span class="contact__info-icon" aria-hidden="true">📧</span>
+                  <a href="mailto:mail@su-coaching.de">mail@su-coaching.de</a>
+                </div>
+
+              </div><!-- /contact__info -->
+
+              <!-- Simple contact form (mailto-based) -->
+              <!--
+                CONTACT FORM
+                ============
+                This form opens the user's local email client (mailto).
+                For a real server-side form, change the action to e.g.:
+                  action="https://formspree.io/f/YOUR_FORM_ID"
+                  method="POST"
+                and remove the onsubmit handler below.
+              -->
+              <form class="contact__form"
+                onsubmit="
+                  var name    = this.querySelector('[name=name]').value;
+                  var email   = this.querySelector('[name=email]').value;
+                  var message = this.querySelector('[name=message]').value;
+                  window.location.href = 'mailto:mail@su-coaching.de?subject=Kontaktanfrage von ' + encodeURIComponent(name) + '&body=' + encodeURIComponent('Name: ' + name + '\nE-Mail: ' + email + '\n\nNachricht:\n' + message);
+                  return false;
+                ">
+                <input type="text"  name="name"    placeholder="Ihr Name"        required autocomplete="name" />
+                <input type="email" name="email"   placeholder="Ihre E-Mail"     required autocomplete="email" />
+                <textarea           name="message" placeholder="Ihre Nachricht"  required></textarea>
+                <button type="submit" class="btn-book">Nachricht senden</button>
+              </form>
+
+            </div><!-- /left column -->
+
+            <!-- Right column: Calendly booking -->
+            <div>
+              <div class="contact__calendly">
+                <h3 class="contact__calendly-title">Kostenfreies Kennenlerngespräch</h3>
+                <p class="contact__calendly-text">
+                  Lust auf ein kurzes Kennenlernen? Buchen Sie hier 15 Minuten für ein persönliches Telefonat. Wir prüfen gemeinsam, ob ich Sie bei Ihren Zielen optimal unterstützen kann.
+                </p>
+
+                <!--
+                  CALENDLY BOOKING BUTTON
+                  =======================
+                  Step 1: Go to https://calendly.com and create an account.
+                  Step 2: Create a new "15-Minute Meeting" event type.
+                          Connect your Google Calendar and Zoom/Google Meet.
+                  Step 3: Copy your event link (e.g. https://calendly.com/su-coaching/kennenlernen).
+                  Step 4: Replace href="#" below with your copied link.
+                  Step 5 (optional popup instead of new tab):
+                    - Uncomment the Calendly widget scripts in the <head> and <body>.
+                    - Change href="#" to href="#" and add:
+                        onclick="Calendly.initPopupWidget({url:'YOUR_LINK'});return false;"
+                -->
+                <a href="#" 
+                   class="btn-book"
+                   title="Termin buchen – öffnet Calendly"
+                   onclick="Calendly.initPopupWidget({url: 'https://calendly.com/sarah-unke/erstes-kennenlerngesprach'});return false;">
+                   Termin buchen
+                </a>
+
+              </div><!-- /contact__calendly -->
+            </div><!-- /right column -->
+
+          </div><!-- /contact__inner -->
+
+        </div><!-- /content-card -->
+      </div>
+    </section><!-- /contact -->
+  </div>
+
+  <!-- ============================================================
+    FOOTER
+    ============================================================
+    Impressum and Datenschutz link to separate pages.
+    Update the copyright year manually each year, or use a small
+    JS snippet (see comment below) to auto-update it.
+  ============================================================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__inner">
+
+        <p class="site-footer__copy">
+          <!--
+            AUTO-UPDATE COPYRIGHT YEAR:
+            Replace "2025" with:
+              <span id="footer-year">2025</span>
+            Then add this in main.js:
+              var el = document.getElementById('footer-year');
+              if (el) el.textContent = new Date().getFullYear();
+          -->
+          &copy; 2026 Sarah Unke · Coaching Praxis
+        </p>
+
+        <ul class="site-footer__links">
+          <li><a href="impressum.html">Impressum</a></li>
+          <li><a href="datenschutz.html">Datenschutz</a></li>
+          <!-- Add more footer links here if needed -->
+        </ul>
+
+      </div>
+    </div>
+  </footer><!-- /site-footer -->
+
+
+  <!-- ============================================================
+    CALENDLY POPUP WIDGET (optional – uncomment when ready)
+    Pair with the <link> tag in <head>.
+  ============================================================= -->
+  <!-- <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script> -->
+
+  <!-- Main JS (load last so DOM is ready) -->
+  <script src="js/main.js"></script>
+
+</body>
+</html>
