@@ -49,7 +49,7 @@
   <!-- <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script> -->
 </head>
 
-<body>
+<body class="has-hero">
 
   <!-- ============================================================
     NAVIGATION
@@ -61,13 +61,16 @@
     - The active state (highlight) is handled automatically by JS.
   ============================================================= -->
   <nav class="site-nav" aria-label="Hauptnavigation">
+    <div class="site-nav__progress" id="scroll-progress"></div>
     <div class="site-nav__inner">
 
       <!-- Logo: orca icon (left side of nav) -->
-      <a href="#" class="site-nav__logo" aria-label="Sarah Unke, Zurück nach oben">
-        <!-- ORCA ICON IN NAV: just replace assets/orca.svg with your file -->
-        <img src="assets/orca.svg" class="site-nav__logo-icon" alt="" aria-hidden="true" />
-        <span class="site-nav__logo-text">SARAH UNKE</span>
+      <a href="#hero" class="site-nav__logo" aria-label="Sarah Unke Startseite">
+        <img src="assets/orca.svg" alt="Sarah Unke Logo" class="site-nav__logo-icon" />
+        <div class="site-nav__logo-group">
+          <span class="site-nav__logo-text">Sarah Unke</span>
+          <span class="site-nav__logo-sub">Coaching-Praxis</span>
+        </div>
       </a>
 
       <!-- Hamburger toggle (only visible on mobile) -->
@@ -626,20 +629,52 @@
   function initSarahWebsite() {
     document.documentElement.classList.add('js-animated');
 
-    // 1. NAVIGATION: SHRINK ON SCROLL
+    // 1. NAVIGATION: SHRINK, PROGRESS & LOGO REVEAL
     try {
       const nav = document.querySelector('.site-nav');
+      const heroCard = document.querySelector('.hero__card');
+      const progressBar = document.getElementById('scroll-progress');
       const SCROLL_THRESHOLD = 30;
-      function updateNavOnScroll() {
-        if (!nav) return;
-        if (window.scrollY > SCROLL_THRESHOLD) {
-          nav.classList.add('nav--scrolled');
-        } else {
-          nav.classList.remove('nav--scrolled');
+
+      if (heroCard) {
+        document.body.classList.add('has-hero');
+      }
+
+      function updateNavState() {
+        const scrollY = window.scrollY || window.pageYOffset;
+
+        if (nav) {
+          if (scrollY > SCROLL_THRESHOLD) {
+            nav.classList.add('nav--scrolled');
+          } else {
+            nav.classList.remove('nav--scrolled');
+          }
+
+          if (heroCard) {
+            const rect = heroCard.getBoundingClientRect();
+            const navHeight = nav.offsetHeight || 55;
+            if (rect.bottom <= navHeight + 10) {
+              nav.classList.add('nav--show-logo');
+            } else {
+              nav.classList.remove('nav--show-logo');
+            }
+          } else {
+            nav.classList.add('nav--show-logo');
+          }
+        }
+
+        if (progressBar) {
+          const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+          if (totalHeight > 0) {
+            const pct = (scrollY / totalHeight) * 100;
+            progressBar.style.width = Math.min(100, Math.max(0, pct)) + '%';
+          }
         }
       }
-      window.addEventListener('scroll', updateNavOnScroll, { passive: true });
-      updateNavOnScroll();
+
+      window.addEventListener('scroll', updateNavState, { passive: true });
+      window.addEventListener('resize', updateNavState, { passive: true });
+      updateNavState();
     } catch (e) {}
 
     // 2. MOBILE HAMBURGER MENU

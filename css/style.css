@@ -88,12 +88,14 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color: transparent !important;
 }
 
 html {
   scroll-behavior: smooth;
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent !important;
   background-color: var(--color-navy);
 }
 
@@ -103,8 +105,19 @@ body {
   color: var(--color-text);
   line-height: 1.75;
   background-color: var(--color-navy);
+  -webkit-tap-highlight-color: transparent !important;
   overflow-x: hidden;
   width: 100%;
+}
+
+button, a, input, textarea, select {
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+button:focus:not(:focus-visible),
+a:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
 }
 
 img {
@@ -522,6 +535,10 @@ hr {
   padding: clamp(0.9rem, 2vw, 1.15rem) clamp(1rem, 2.5vw, 1.5rem);
   background: transparent;
   border: none;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  user-select: none;
   cursor: pointer;
   text-align: left;
   font-family: var(--font-body);
@@ -529,6 +546,16 @@ hr {
   font-weight: 500;
   color: var(--color-navy);
   transition: color var(--transition-fast);
+}
+
+.faq__question:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.faq__question:focus-visible {
+  outline: 2px solid rgba(58, 124, 165, 0.4);
+  outline-offset: -2px;
 }
 
 .faq__item.is-open .faq__question {

@@ -17,25 +17,58 @@ function initSarahWebsite() {
   document.documentElement.classList.add('js-animated');
 
   // ─────────────────────────────────────────────
-  // 1. NAVIGATION: SHRINK ON SCROLL
+  // 1. NAVIGATION: SHRINK, PROGRESS & LOGO REVEAL
   // ─────────────────────────────────────────────
   try {
     const nav = document.querySelector('.site-nav');
+    const heroCard = document.querySelector('.hero__card');
+    const progressBar = document.getElementById('scroll-progress');
     const SCROLL_THRESHOLD = 30;
 
-    function updateNavOnScroll() {
-      if (!nav) return;
-      if (window.scrollY > SCROLL_THRESHOLD) {
-        nav.classList.add('nav--scrolled');
-      } else {
-        nav.classList.remove('nav--scrolled');
+    if (heroCard) {
+      document.body.classList.add('has-hero');
+    }
+
+    function updateNavState() {
+      const scrollY = window.scrollY || window.pageYOffset;
+
+      if (nav) {
+        // 1. Shrink nav & shadow
+        if (scrollY > SCROLL_THRESHOLD) {
+          nav.classList.add('nav--scrolled');
+        } else {
+          nav.classList.remove('nav--scrolled');
+        }
+
+        // 2. Show logo in top nav ONLY when hero header card is scrolled out of view
+        if (heroCard) {
+          const rect = heroCard.getBoundingClientRect();
+          const navHeight = nav.offsetHeight || 55;
+          if (rect.bottom <= navHeight + 10) {
+            nav.classList.add('nav--show-logo');
+          } else {
+            nav.classList.remove('nav--show-logo');
+          }
+        } else {
+          nav.classList.add('nav--show-logo');
+        }
+      }
+
+      // 3. Scroll progress indicator
+      if (progressBar) {
+        const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+        if (totalHeight > 0) {
+          const pct = (scrollY / totalHeight) * 100;
+          progressBar.style.width = Math.min(100, Math.max(0, pct)) + '%';
+        }
       }
     }
 
-    window.addEventListener('scroll', updateNavOnScroll, { passive: true });
-    updateNavOnScroll();
+    window.addEventListener('scroll', updateNavState, { passive: true });
+    window.addEventListener('resize', updateNavState, { passive: true });
+    updateNavState();
   } catch (err) {
-    console.error('Nav scroll error:', err);
+    console.error('Nav state error:', err);
   }
 
 

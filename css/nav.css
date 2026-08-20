@@ -33,12 +33,26 @@
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   box-shadow: 0 2px 16px rgba(15, 35, 55, 0.14), 0 1px 3px rgba(15, 35, 55, 0.08);
-  border-bottom: 1px solid rgba(58, 124, 165, 0.08);
+  border-bottom: none;
   transition:
     background      0.3s ease,
     backdrop-filter 0.3s ease,
     box-shadow      0.3s ease;
   box-sizing: border-box;
+}
+
+/* --- Scroll Progress Bar (subtle 1.5px line under header) --- */
+.site-nav__progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 1.5px;
+  width: 0%;
+  background: linear-gradient(90deg, rgba(58, 124, 165, 0.65), rgba(94, 160, 194, 0.75));
+  transition: width 0.08s linear;
+  z-index: 10;
+  pointer-events: none;
+  border-radius: 0 1px 1px 0;
 }
 
 /* Inner wrapper: logo left, links right */
@@ -52,13 +66,31 @@
   width: 100%;
 }
 
-/* --- Logo (orca icon + name) --- */
+/* --- Logo (orca icon + name + subtitle) --- */
 .site-nav__logo {
   display: flex;
   align-items: center;
   gap: 0.55rem;
   text-decoration: none;
   flex-shrink: 0;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* When hero card is present on homepage, gently hide nav logo at top */
+body.has-hero .site-nav__logo,
+.has-hero .site-nav__logo {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+}
+
+body.has-hero .site-nav.nav--show-logo .site-nav__logo,
+body.has-hero .nav--show-logo .site-nav__logo,
+.has-hero .site-nav.nav--show-logo .site-nav__logo {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  transform: translateY(0) !important;
 }
 
 .site-nav__logo-icon {
@@ -68,16 +100,70 @@
   flex-shrink: 0;
 }
 
+.site-nav__logo-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  line-height: 1;
+  white-space: nowrap;
+}
+
 .site-nav__logo-text {
   font-family: var(--font-display, 'Cormorant Garamond', Georgia, serif);
   font-size: 1.05rem;
   font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-navy, #1d3d52);
+  transition: color 0.3s ease;
+  white-space: nowrap;
+}
+
+.site-nav__logo-sub {
+  font-family: var(--font-body, 'Jost', sans-serif);
+  font-size: 0.68rem;
+  font-weight: 400;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--color-navy, #1d3d52);
-  transition: color 0.3s ease, font-size 0.3s ease;
-  display: block;
+  opacity: 0.72;
+  line-height: 1;
   white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+}
+
+.site-nav__logo-sub::before {
+  content: "·";
+  margin-right: 0.35rem;
+  color: var(--color-ocean, #3a7ca5);
+  font-weight: 600;
+  font-size: 1.1em;
+}
+
+@media (max-width: 480px) {
+  .site-nav__logo {
+    gap: 0.4rem;
+  }
+
+  .site-nav__logo-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .site-nav__logo-text {
+    font-size: 0.88rem;
+    letter-spacing: 0.06em;
+  }
+
+  .site-nav__logo-sub {
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+  }
+
+  .site-nav__logo-sub::before {
+    margin-right: 0.25rem;
+  }
 }
 
 /* --- Navigation links --- */
@@ -148,7 +234,7 @@
 /* --- SCROLLED STATE (.nav--scrolled added by JS) --- */
 .nav--scrolled {
   box-shadow: 0 4px 24px rgba(15, 35, 55, 0.18), 0 2px 6px rgba(15, 35, 55, 0.1);
-  border-bottom: 1px solid rgba(58, 124, 165, 0.12);
+  border-bottom: none;
 }
 
 /* --- MOBILE NAV (max 820px) --- */
