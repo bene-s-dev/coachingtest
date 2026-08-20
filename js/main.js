@@ -333,6 +333,42 @@ function initSarahWebsite() {
   } catch (err) {
     console.error('Contact form error:', err);
   }
+
+  // ─────────────────────────────────────────────
+  // 8. CALENDLY POPUP OVERLAY
+  // ─────────────────────────────────────────────
+  try {
+    const openBtn = document.getElementById('open-calendly-btn');
+    const CALENDLY_URL = 'https://calendly.com/sarah-unke/erstes-kennenlerngesprach';
+
+    function triggerCalendly(e) {
+      if (e) e.preventDefault();
+
+      if (window.Calendly) {
+        window.Calendly.initPopupWidget({ url: CALENDLY_URL });
+      } else {
+        const script = document.createElement('script');
+        script.src = 'https://assets.calendly.com/assets/external/widget.js';
+        script.onload = function() {
+          if (window.Calendly) {
+            window.Calendly.initPopupWidget({ url: CALENDLY_URL });
+          } else {
+            window.open(CALENDLY_URL, '_blank', 'noopener,noreferrer');
+          }
+        };
+        script.onerror = function() {
+          window.open(CALENDLY_URL, '_blank', 'noopener,noreferrer');
+        };
+        document.body.appendChild(script);
+      }
+    }
+
+    if (openBtn) {
+      openBtn.addEventListener('click', triggerCalendly);
+    }
+  } catch (e) {
+    console.error('Calendly overlay error:', e);
+  }
 }
 
 // Ensure execution whether DOM is loading or already loaded
