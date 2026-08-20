@@ -44,17 +44,9 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/nav.css" />
 
-  <!-- ============================================================
-    CALENDLY (optional – uncomment when ready to connect)
-    1. Sign up at https://calendly.com
-    2. Create a 15-minute event type
-    3. Uncomment the two lines below and replace YOUR_CALENDLY_URL
-    4. In the contact section below, update the btn-book href and/or
-       add onclick="Calendly.initPopupWidget({url:'YOUR_CALENDLY_URL'});return false;"
-  ============================================================= -->
+  <!-- Calendly popup styles / scripts (uncomment if Calendly is connected) -->
   <!-- <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet"> -->
-  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+  <!-- <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script> -->
 </head>
 
 <body>
@@ -626,14 +618,234 @@
   </footer><!-- /site-footer -->
 
 
-  <!-- ============================================================
-    CALENDLY POPUP WIDGET (optional – uncomment when ready)
-    Pair with the <link> tag in <head>.
-  ============================================================= -->
-  <!-- <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script> -->
+  <!-- Main JavaScript (Embedded inline for guaranteed execution + external fallback) -->
+  <script>
+  /* =============================================================
+     SARAH UNKE COACHING – Interactive Engine
+     ============================================================= */
+  function initSarahWebsite() {
+    document.documentElement.classList.add('js-animated');
 
-  <!-- Main JS (load last so DOM is ready) -->
-  <script src="js/main.js?v=2"></script>
+    // 1. NAVIGATION: SHRINK ON SCROLL
+    try {
+      const nav = document.querySelector('.site-nav');
+      const SCROLL_THRESHOLD = 30;
+      function updateNavOnScroll() {
+        if (!nav) return;
+        if (window.scrollY > SCROLL_THRESHOLD) {
+          nav.classList.add('nav--scrolled');
+        } else {
+          nav.classList.remove('nav--scrolled');
+        }
+      }
+      window.addEventListener('scroll', updateNavOnScroll, { passive: true });
+      updateNavOnScroll();
+    } catch (e) {}
 
+    // 2. MOBILE HAMBURGER MENU
+    try {
+      const nav = document.querySelector('.site-nav');
+      const navToggle = document.querySelector('.site-nav__toggle');
+      const hamburgerIcon = document.getElementById('hamburger-icon');
+      const closeIcon     = document.getElementById('close-icon');
+
+      if (navToggle && nav) {
+        function toggleMenu(e) {
+          if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+          }
+          const isOpen = nav.classList.toggle('nav--open');
+          navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+          if (hamburgerIcon && closeIcon) {
+            hamburgerIcon.style.display = isOpen ? 'none'  : 'block';
+            closeIcon.style.display     = isOpen ? 'block' : 'none';
+          }
+        }
+        navToggle.addEventListener('click', toggleMenu);
+
+        document.querySelectorAll('.site-nav__links a').forEach(function (link) {
+          link.addEventListener('click', function () {
+            nav.classList.remove('nav--open');
+            navToggle.setAttribute('aria-expanded', 'false');
+            if (hamburgerIcon && closeIcon) {
+              hamburgerIcon.style.display = 'block';
+              closeIcon.style.display     = 'none';
+            }
+          });
+        });
+
+        document.addEventListener('click', function (e) {
+          if (nav.classList.contains('nav--open') && !nav.contains(e.target)) {
+            nav.classList.remove('nav--open');
+            navToggle.setAttribute('aria-expanded', 'false');
+            if (hamburgerIcon && closeIcon) {
+              hamburgerIcon.style.display = 'block';
+              closeIcon.style.display     = 'none';
+            }
+          }
+        });
+      }
+    } catch (e) {}
+
+    // 3. ACTIVE NAV LINK HIGHLIGHTING
+    try {
+      const nav = document.querySelector('.site-nav');
+      const navLinks  = document.querySelectorAll('.site-nav__links a[href^="#"]');
+      const navHeight = nav ? nav.offsetHeight : 60;
+      const linkMap = {};
+      navLinks.forEach(function (link) {
+        const id = link.getAttribute('href').slice(1);
+        if (id) linkMap[id] = link;
+      });
+
+      if ('IntersectionObserver' in window && Object.keys(linkMap).length > 0) {
+        const sectionObserver = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                navLinks.forEach(function (l) { l.classList.remove('is-active'); });
+                const activeLink = linkMap[entry.target.id];
+                if (activeLink) activeLink.classList.add('is-active');
+              }
+            });
+          },
+          { rootMargin: `-${navHeight + 10}px 0px -55% 0px`, threshold: 0 }
+        );
+        Object.keys(linkMap).forEach(function (id) {
+          const section = document.getElementById(id);
+          if (section) sectionObserver.observe(section);
+        });
+      }
+    } catch (e) {}
+
+    // 4. FAQ ACCORDION
+    try {
+      const faqQuestions = document.querySelectorAll('.faq__question');
+      faqQuestions.forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          const item   = btn.closest('.faq__item');
+          if (!item) return;
+          const isOpen = item.classList.contains('is-open');
+
+          document.querySelectorAll('.faq__item.is-open').forEach(function (openItem) {
+            if (openItem !== item) {
+              openItem.classList.remove('is-open');
+              const otherBtn = openItem.querySelector('.faq__question');
+              if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+            }
+          });
+
+          if (isOpen) {
+            item.classList.remove('is-open');
+            btn.setAttribute('aria-expanded', 'false');
+          } else {
+            item.classList.add('is-open');
+            btn.setAttribute('aria-expanded', 'true');
+          }
+        });
+      });
+    } catch (e) {}
+
+    // 5. SMOOTH SCROLL OFFSET
+    try {
+      const nav = document.querySelector('.site-nav');
+      document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+        anchor.addEventListener('click', function (e) {
+          const targetId = anchor.getAttribute('href');
+          if (!targetId || targetId === '#') return;
+          const target = document.querySelector(targetId);
+          if (!target) return;
+          e.preventDefault();
+          const navH   = nav ? nav.offsetHeight : 50;
+          const offset = target.getBoundingClientRect().top + window.scrollY - navH - 8;
+          window.scrollTo({ top: offset, behavior: 'smooth' });
+        });
+      });
+    } catch (e) {}
+
+    // 6. SCROLL REVEAL ANIMATIONS
+    try {
+      const revealElements = document.querySelectorAll(
+        '.welcome .container, .content-card, .service-card, .methodology__quote, .faq__item, .contact__inner > *'
+      );
+      if (revealElements.length > 0) {
+        if ('IntersectionObserver' in window) {
+          revealElements.forEach(function (el) { el.classList.add('reveal-on-scroll'); });
+          const revealObserver = new IntersectionObserver(
+            function (entries, observer) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add('is-revealed');
+                  observer.unobserve(entry.target);
+                }
+              });
+            },
+            { rootMargin: '0px 0px -10px 0px', threshold: 0 }
+          );
+          revealElements.forEach(function (el) { revealObserver.observe(el); });
+        } else {
+          revealElements.forEach(function (el) { el.classList.add('is-revealed'); });
+        }
+      }
+    } catch (e) {}
+
+    // 7. CONTACT FORM AJAX
+    try {
+      const contactForm = document.getElementById('contact-form');
+      const submitBtn   = document.getElementById('contact-submit-btn');
+      const statusBox   = document.getElementById('contact-status');
+      if (contactForm) {
+        contactForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          if (!submitBtn) return;
+          const originalBtnText = submitBtn.textContent;
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Wird gesendet...';
+          if (statusBox) {
+            statusBox.style.display = 'none';
+            statusBox.className = 'contact__form-status';
+          }
+          const formData = new FormData(contactForm);
+          fetch('https://formsubmit.co/ajax/coaching@sarah-unke.de', {
+            method: 'POST',
+            headers: { 'Accept': 'application/json' },
+            body: formData
+          })
+          .then(function (res) {
+            if (!res.ok) throw new Error('Fehler beim Senden');
+            return res.json();
+          })
+          .then(function () {
+            contactForm.reset();
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtnText;
+            if (statusBox) {
+              statusBox.textContent = 'Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet. Ich melde mich schnellstmöglich bei Ihnen.';
+              statusBox.classList.add('is-success');
+              statusBox.style.display = 'block';
+            }
+          })
+          .catch(function () {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtnText;
+            if (statusBox) {
+              statusBox.textContent = 'Es gab ein Problem beim Senden. Bitte schreiben Sie mir alternativ direkt an coaching@sarah-unke.de.';
+              statusBox.classList.add('is-error');
+              statusBox.style.display = 'block';
+            }
+          });
+        });
+      }
+    } catch (e) {}
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSarahWebsite);
+  } else {
+    initSarahWebsite();
+  }
+  </script>
 </body>
 </html>

@@ -14,6 +14,7 @@
    ============================================================= */
 
 function initSarahWebsite() {
+  document.documentElement.classList.add('js-animated');
 
   // ─────────────────────────────────────────────
   // 1. NAVIGATION: SHRINK ON SCROLL

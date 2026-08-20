@@ -1041,9 +1041,9 @@ hr {
 
 
 /* -------------------------------------------------------------
-   14. SUBTLE SCROLL REVEAL ANIMATION
+   14. SUBTLE SCROLL REVEAL ANIMATION (Progressive Enhancement)
    ------------------------------------------------------------- */
-.reveal-on-scroll {
+.js-animated .reveal-on-scroll {
   opacity: 0;
   transform: translateY(22px);
   transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
@@ -1051,7 +1051,7 @@ hr {
   will-change: opacity, transform;
 }
 
-.reveal-on-scroll.is-revealed {
+.js-animated .reveal-on-scroll.is-revealed {
   opacity: 1;
   transform: translateY(0);
 }
