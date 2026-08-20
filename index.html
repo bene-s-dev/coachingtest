@@ -882,11 +882,21 @@
       function triggerCalendly(e) {
         if (e) e.preventDefault();
 
-        // 1.5s animated loading indicator
-        document.body.classList.add('calendly-is-loading');
+        // 2.0s stationary badge with rotating Orca icon (shadow does not rotate)
+        const oldLoader = document.querySelector('.calendly-orca-loader');
+        if (oldLoader && oldLoader.parentNode) oldLoader.parentNode.removeChild(oldLoader);
+
+        const loader = document.createElement('div');
+        loader.className = 'calendly-orca-loader';
+        loader.innerHTML = '<img src="assets/orca.svg" class="calendly-orca-icon" alt="Laden" />';
+        document.body.appendChild(loader);
+
         setTimeout(function () {
-          document.body.classList.remove('calendly-is-loading');
-        }, 1500);
+          loader.classList.add('is-hidden');
+          setTimeout(function () {
+            if (loader.parentNode) loader.parentNode.removeChild(loader);
+          }, 380);
+        }, 2000);
 
         if (window.Calendly) {
           window.Calendly.initPopupWidget({ url: CALENDLY_URL });

@@ -1123,42 +1123,47 @@ hr {
   width: 100% !important;
 }
 
-/* Centered loading badge in front of the calendar field (Z-axis) */
-.calendly-overlay .calendly-popup::after {
-  content: 'Lädt...' !important;
-  position: absolute !important;
-  top: 55% !important;
+/* Static white pill badge with stationary shadow */
+.calendly-orca-loader {
+  position: fixed !important;
+  top: 52% !important;
   left: 50% !important;
   transform: translate(-50%, -50%) !important;
-  background: rgba(255, 255, 255, 0.96) !important;
-  backdrop-filter: blur(8px) !important;
-  -webkit-backdrop-filter: blur(8px) !important;
-  color: var(--color-navy, #1d3d52) !important;
-  font-family: var(--font-body, 'Jost', sans-serif) !important;
-  font-size: 1.05rem !important;
-  font-weight: 500 !important;
-  letter-spacing: 0.14em !important;
-  padding: 0.85rem 1.85rem !important;
-  border-radius: 9999px !important;
-  box-shadow: 0 12px 35px rgba(10, 30, 45, 0.25), 0 0 0 1px rgba(58, 124, 165, 0.18) !important;
-  z-index: 1000000 !important;
-  opacity: 0 !important;
+  width: 68px !important;
+  height: 68px !important;
+  background: #ffffff !important;
+  border-radius: 50% !important;
+  box-shadow: 0 14px 38px rgba(10, 30, 45, 0.32), 0 0 0 1px rgba(58, 124, 165, 0.16) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 10000000 !important;
   pointer-events: none !important;
-  transition: opacity 0.3s ease, transform 0.3s ease !important;
-}
-
-/* Active during first 1.5s after launch */
-body.calendly-is-loading .calendly-overlay .calendly-popup::after {
   opacity: 1 !important;
-  animation: calendlyDots 0.75s infinite linear !important;
+  transition: opacity 0.35s ease, transform 0.35s ease !important;
 }
 
-@keyframes calendlyDots {
-  0%, 20%   { content: 'Lädt'; }
-  25%, 45%  { content: 'Lädt.'; }
-  50%, 70%  { content: 'Lädt..'; }
-  75%, 95%  { content: 'Lädt...'; }
-  100%      { content: 'Lädt'; }
+.calendly-orca-loader.is-hidden {
+  opacity: 0 !important;
+  transform: translate(-50%, -50%) scale(0.92) !important;
+}
+
+/* ONLY the Orca SVG rotates inside - the shadow remains completely stationary */
+.calendly-orca-icon {
+  width: 40px !important;
+  height: 40px !important;
+  display: block !important;
+  animation: orcaRotate 1s linear infinite !important;
+  transform-origin: center center !important;
+}
+
+@keyframes orcaRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .calendly-overlay .calendly-popup .calendly-popup-content {
