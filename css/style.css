@@ -190,7 +190,7 @@ hr {
   -webkit-backdrop-filter: blur(10px);
   width: 100%;
   box-sizing: border-box;
-  overflow: hidden;
+  touch-action: pan-y;
 }
 
 /* Main Section Padding */
@@ -242,7 +242,7 @@ hr {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  touch-action: pan-y;
   padding: clamp(4.5rem, 8.5vw, 7.5rem) clamp(1.25rem, 4vw, 3rem);
   box-sizing: border-box;
 }
