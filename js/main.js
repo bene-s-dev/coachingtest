@@ -62,11 +62,56 @@ function initSarahWebsite() {
           progressBar.style.width = Math.min(100, Math.max(0, pct)) + '%';
         }
       }
+
     }
 
-    window.addEventListener('scroll', updateNavState, { passive: true });
-    window.addEventListener('resize', updateNavState, { passive: true });
+    // 4. Parallax background mapping with smooth floating inertia (Lerp delay)
+    const parallaxWrapper = document.querySelector('.parallax-wrapper');
+    let targetParallaxY = 200;
+    let currentParallaxY = 200;
+    let isParallaxLoopRunning = false;
+
+    function renderParallax() {
+      if (!parallaxWrapper) return;
+      const diff = targetParallaxY - currentParallaxY;
+      currentParallaxY += diff * 0.08;
+      parallaxWrapper.style.setProperty('--parallax-y', `${currentParallaxY.toFixed(2)}px`);
+
+      if (Math.abs(diff) > 0.1) {
+        requestAnimationFrame(renderParallax);
+      } else {
+        currentParallaxY = targetParallaxY;
+        parallaxWrapper.style.setProperty('--parallax-y', `${currentParallaxY.toFixed(2)}px`);
+        isParallaxLoopRunning = false;
+      }
+    }
+
+    function updateParallaxTarget() {
+      if (!parallaxWrapper) return;
+      const rect = parallaxWrapper.getBoundingClientRect();
+      const wrapperHeight = parallaxWrapper.offsetHeight;
+      const windowHeight = window.innerHeight;
+      const progress = Math.max(0, Math.min(1, -rect.top / (wrapperHeight - windowHeight + 1)));
+      targetParallaxY = (1 - progress) * 200;
+
+      if (!isParallaxLoopRunning) {
+        isParallaxLoopRunning = true;
+        requestAnimationFrame(renderParallax);
+      }
+    }
+
+    window.addEventListener('scroll', function () {
+      updateNavState();
+      updateParallaxTarget();
+    }, { passive: true });
+
+    window.addEventListener('resize', function () {
+      updateNavState();
+      updateParallaxTarget();
+    }, { passive: true });
+
     updateNavState();
+    updateParallaxTarget();
   } catch (err) {
     console.error('Nav state error:', err);
   }
@@ -229,19 +274,15 @@ function initSarahWebsite() {
 
 
   // ─────────────────────────────────────────────
-  // 6. SUBTLE SCROLL REVEAL ANIMATIONS
+  // 6. SUBTLE SCROLL REVEAL ANIMATIONS (Nur beim Herunterscrollen)
   // ─────────────────────────────────────────────
   try {
     const revealElements = document.querySelectorAll(
-      '.welcome .container, .content-card, .methodology__quote, .faq__item'
+      '.welcome .container, .content-card, .service-card, .methodology__quote, .faq__item'
     );
 
     if (revealElements.length > 0) {
       if ('IntersectionObserver' in window) {
-        revealElements.forEach(function (el) {
-          el.classList.add('reveal-on-scroll');
-        });
-
         const revealObserver = new IntersectionObserver(
           function (entries, observer) {
             entries.forEach(function (entry) {
@@ -252,12 +293,13 @@ function initSarahWebsite() {
             });
           },
           {
-            rootMargin: '0px 0px -10px 0px',
-            threshold: 0,
+            rootMargin: '0px 0px -25px 0px',
+            threshold: 0.05,
           }
         );
 
         revealElements.forEach(function (el) {
+          el.classList.add('reveal-on-scroll');
           revealObserver.observe(el);
         });
       } else {
@@ -467,7 +509,7 @@ function initSarahWebsite() {
           html: `
             <p class="review-text">
               <span>${visiblePart}</span><span class="review-text-more" style="display:none;"> ${hiddenPart}</span>
-              <button type="button" class="review-toggle-btn" aria-expanded="false">... Mehr anzeigen</button>
+              <button type="button" class="review-toggle-btn" aria-expanded="false">Weiterlesen</button>
             </p>
           `
         };
@@ -515,11 +557,11 @@ function initSarahWebsite() {
             if (isExpanded) {
               if (moreSpan) moreSpan.style.display = 'none';
               toggleBtn.setAttribute('aria-expanded', 'false');
-              toggleBtn.textContent = '... Mehr anzeigen';
+              toggleBtn.textContent = 'Weiterlesen';
             } else {
               if (moreSpan) moreSpan.style.display = 'inline';
               toggleBtn.setAttribute('aria-expanded', 'true');
-              toggleBtn.textContent = ' Weniger anzeigen';
+              toggleBtn.textContent = 'Weniger anzeigen';
             }
           });
         }

@@ -92,7 +92,7 @@ html {
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent !important;
-  background-color: var(--color-navy);
+  background-color: var(--color-white);
   touch-action: pan-y;
 }
 
@@ -101,7 +101,7 @@ body {
   font-weight: 400;
   color: var(--color-text);
   line-height: 1.75;
-  background-color: var(--color-navy);
+  background-color: var(--color-white);
   -webkit-tap-highlight-color: transparent !important;
   overflow-x: hidden;
   width: 100%;
@@ -173,13 +173,32 @@ hr {
 
 /* Scalable full-width wrapper with responsive background */
 .parallax-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: #f7f3ee;
+}
+
+.parallax-wrapper::before {
+  content: '';
+  position: absolute;
+  top: -220px;
+  left: 0;
+  width: 100%;
+  height: calc(100% + 220px);
   background-image: url('../assets/background.webp');
   background-repeat: no-repeat;
-  background-position: center top;
+  background-position: center bottom;
   background-size: cover;
-  background-attachment: scroll;
-  width: 100%;
-  overflow-x: hidden;
+  z-index: 0;
+  will-change: transform;
+  transform: translate3d(0, var(--parallax-y, 0px), 0);
+  pointer-events: none;
+}
+
+.parallax-wrapper > * {
+  position: relative;
+  z-index: 1;
 }
 
 /* Scalable Section Wrapper */
@@ -425,8 +444,8 @@ hr {
   background: var(--color-white);
   border-radius: var(--radius-md);
   padding: clamp(1.5rem, 3vw, 2.25rem) clamp(1.25rem, 2.5vw, 1.75rem);
-  box-shadow: var(--shadow-paper);
-  border: 1px solid rgba(58, 124, 165, 0.14);
+  box-shadow: inset 0 1.5px 0 #ffffff, 0 1px 3px rgba(10, 30, 45, 0.03), 0 8px 24px -4px rgba(58, 124, 165, 0.08);
+  border: 1px solid rgba(58, 124, 165, 0.16);
   display: flex;
   flex-direction: column;
 }
@@ -702,17 +721,24 @@ hr {
   align-items: start;
 }
 
+.contact .section-title {
+  margin-bottom: 0.35rem;
+}
+
 .contact__heading {
   font-size: var(--text-2xl);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.35rem;
 }
 
 .contact__subheading {
-  font-size: var(--text-md);
+  font-size: var(--text-xl);
   color: var(--color-ocean);
   font-family: var(--font-display);
   font-style: italic;
-  margin-bottom: 1.5rem;
+  font-weight: 500;
+  line-height: 1.25;
+  margin-top: 0;
+  margin-bottom: 0.55rem;
 }
 
 .contact__info {
@@ -731,8 +757,48 @@ hr {
 }
 
 .contact__info-icon {
-  font-size: 1.1rem;
+  width: 22px;
+  height: 22px;
+  background: transparent;
+  border: none;
+  color: var(--color-ocean);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+  transition: transform var(--transition-fast), color var(--transition-fast);
+}
+
+.contact__info-icon svg {
+  width: 20px;
+  height: 20px;
+  color: var(--color-ocean);
+  fill: var(--color-ocean);
+  stroke: var(--color-ocean);
+  display: block;
+  transition: all var(--transition-fast);
+}
+
+.contact__info-item a {
+  font-weight: 500;
+  color: var(--color-ocean);
+  transition: color var(--transition-fast);
+}
+
+.contact__info-item:hover a {
+  color: var(--color-navy);
+}
+
+.contact__info-item:hover .contact__info-icon {
+  background: transparent;
+  border: none;
+  transform: scale(1.08);
+}
+
+.contact__info-item:hover .contact__info-icon svg {
+  color: var(--color-navy);
+  fill: var(--color-navy);
+  stroke: var(--color-navy);
 }
 
 .contact__calendly {
@@ -934,12 +1000,6 @@ hr {
   gap: 0.85rem;
   box-shadow: inset 0 1.5px 0 #ffffff, 0 4px 16px -4px rgba(10, 30, 45, 0.05);
   position: relative;
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
-}
-
-.review-card:hover {
-  border-color: rgba(58, 124, 165, 0.35);
-  box-shadow: inset 0 1.5px 0 #ffffff, 0 8px 24px -6px rgba(10, 30, 45, 0.09);
 }
 
 .review-header {
@@ -1365,9 +1425,9 @@ hr {
    ------------------------------------------------------------- */
 .js-animated .reveal-on-scroll {
   opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(22px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
