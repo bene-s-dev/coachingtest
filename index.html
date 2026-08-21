@@ -44,6 +44,9 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/nav.css" />
 
+  <!-- Reviews Data -->
+  <script src="js/reviews-data.js"></script>
+
   <!-- Calendly popup styles & script -->
   <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
   <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
@@ -93,6 +96,7 @@
         <li><a href="#methodik">Methodik</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#kontakt">Kontakt</a></li>
+        <li><a href="#bewertungen">Bewertungen</a></li>
       </ul>
 
     </div>
@@ -587,6 +591,37 @@
         </div><!-- /content-card -->
       </div>
     </section><!-- /contact -->
+
+
+    <!-- ============================================================
+      REVIEWS SECTION (Kundenstimmen / Bewertungen)
+      ============================================================ -->
+    <section class="section-parallax reviews" id="bewertungen">
+      <div class="container">
+        <div class="content-card">
+
+          <h2 class="section-title">Kundenstimmen</h2>
+
+          <div class="reviews-slider" id="reviews-slider">
+            <div class="reviews-track" id="reviews-track">
+              <!-- Dynamically rendered from js/reviews-data.js -->
+            </div>
+
+            <!-- Controls: Prev / Next + Dot Indicators -->
+            <div class="reviews-controls">
+              <button class="reviews-arrow reviews-arrow--prev" id="reviews-prev" aria-label="Vorherige Bewertung">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+              </button>
+              <div class="reviews-dots" id="reviews-dots" aria-label="Bewertungsauswahl"></div>
+              <button class="reviews-arrow reviews-arrow--next" id="reviews-next" aria-label="Nächste Bewertung">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </button>
+            </div>
+          </div>
+
+        </div><!-- /content-card -->
+      </div>
+    </section><!-- /reviews -->
   </div>
 
   <!-- ============================================================
@@ -920,6 +955,150 @@
 
       if (openBtn) {
         openBtn.addEventListener('click', triggerCalendly);
+      }
+    } catch (e) {}
+
+    // 9. REVIEWS SLIDER (Kundenstimmen)
+    try {
+      const track = document.getElementById('reviews-track');
+      const dotsContainer = document.getElementById('reviews-dots');
+      const prevBtn = document.getElementById('reviews-prev');
+      const nextBtn = document.getElementById('reviews-next');
+      const sliderContainer = document.getElementById('reviews-slider');
+
+      const reviews = (window.REVIEWS_DATA && window.REVIEWS_DATA.length > 0)
+        ? window.REVIEWS_DATA
+        : [
+            {
+              author: "Vanessa Neumann",
+              role: "Klientin",
+              rating: 5,
+              text: "Ich kann die Zusammenarbeit mit Sarah unbedingt empfehlen 💗\n\nDie Auswahl der Methoden, eine Begleitung auf Augenhöhe, ein gemeinsamer Prozess, das Finden guter Lösungen.\n\nSarah hat die Fähigkeit zu Wertschätzung und Empathie, auch deswegen konnte ich Perspektiven dazugewinnen und konkrete Fortschritte erkennen.\n\nIch freue mich schon auf eine nächste Zusammenarbeit 🥂❗"
+            },
+            {
+              author: "Ralph Burterdinger",
+              role: "Führungskraft",
+              rating: 5,
+              text: "Ich habe das systemische Coaching genutzt, um mein Team durch eine Phase der Restrukturierung zu führen und einige verfahrene Konflikte zu lösen. Frau Unke war dabei eine Sparringspartnerin auf Augenhöhe. Anstatt lange um den heißen Brei herumzureden, ging es direkt analytisch und strukturiert zur Sache. Besonders geholfen hat mir der systemische Ansatz. Probleme im Team wurden nicht isoliert betrachtet, sondern im Kontext des gesamten Unternehmens. Das hat den Blick auf die tatsächlichen Ursachen von Blockaden extrem geschärft.\n\nDie Ergebnisse lassen sich im Führungsalltag direkt umsetzen. Die Kommunikation im Team läuft spürbar runder, Entscheidungen fallen schneller und Konflikte werden sachlich geklärt. Keine theoretischen Vorträge, sondern handfeste Werkzeuge. Kann ich jeder Führungskraft, die nach pragmatischen Lösungen sucht, nur empfehlen."
+            },
+            {
+              author: "Janine Peterson",
+              role: "Klientin",
+              rating: 5,
+              text: "Die Zusammenarbeit mit Frau Unke war für mich eine absolute Bereicherung. Vom ersten Moment an habe ich mich bei ihr unglaublich sicher, verstanden und gut aufgehoben gefühlt. Mit ihrer empathischen, einfühlsamen und gleichzeitig hochprofessionellen Art schafft sie einen Raum, in dem man sich wunderbar öffnen kann.\n\nDank ihrer systemischen Impulse konnte ich festgefahrene Muster erkennen und ganz neue, wertvolle Perspektiven für mich gewinnen. Ich bin ihr unglaublich dankbar für die Unterstützung und kann sie von ganzem Herzen jedem weiterempfehlen, der echte Veränderung sucht!"
+            }
+          ];
+
+      if (track && dotsContainer) {
+        track.innerHTML = '';
+        dotsContainer.innerHTML = '';
+
+        let currentIndex = 0;
+        const totalSlides = reviews.length;
+
+        reviews.forEach(function (rev, idx) {
+          const slide = document.createElement('div');
+          slide.className = 'review-slide';
+          slide.setAttribute('role', 'group');
+          slide.setAttribute('aria-label', `Bewertung ${idx + 1} von ${totalSlides}`);
+
+          const starsHtml = '★'.repeat(rev.rating || 5);
+
+          slide.innerHTML = `
+            <div class="review-card">
+              <div class="review-header">
+                <div class="review-stars" aria-label="${rev.rating || 5} von 5 Sternen">${starsHtml}</div>
+                <svg class="review-quote-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z"/>
+                </svg>
+              </div>
+              <p class="review-text">${rev.text.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>
+              <div class="review-footer">
+                <div class="review-author">${rev.author}</div>
+                ${rev.role ? `<div class="review-role">${rev.role}</div>` : ''}
+              </div>
+            </div>
+          `;
+          track.appendChild(slide);
+
+          const dot = document.createElement('button');
+          dot.className = 'reviews-dot' + (idx === 0 ? ' is-active' : '');
+          dot.setAttribute('aria-label', `Zu Bewertung ${idx + 1} springen`);
+          dot.addEventListener('click', function () {
+            goToSlide(idx);
+          });
+          dotsContainer.appendChild(dot);
+        });
+
+        function updateSlidePosition() {
+          track.style.transform = `translateX(-${currentIndex * 100}%)`;
+          const dots = dotsContainer.querySelectorAll('.reviews-dot');
+          dots.forEach(function (d, i) {
+            d.classList.toggle('is-active', i === currentIndex);
+          });
+        }
+
+        function goToSlide(index) {
+          if (index < 0) {
+            currentIndex = totalSlides - 1;
+          } else if (index >= totalSlides) {
+            currentIndex = 0;
+          } else {
+            currentIndex = index;
+          }
+          updateSlidePosition();
+        }
+
+        if (prevBtn) {
+          prevBtn.addEventListener('click', function () {
+            goToSlide(currentIndex - 1);
+          });
+        }
+
+        if (nextBtn) {
+          nextBtn.addEventListener('click', function () {
+            goToSlide(currentIndex + 1);
+          });
+        }
+
+        // Touch swipe support (horizontal)
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let isHorizontalSwipe = false;
+
+        if (sliderContainer) {
+          sliderContainer.addEventListener('touchstart', function (e) {
+            if (e.touches.length === 1) {
+              touchStartX = e.touches[0].clientX;
+              touchStartY = e.touches[0].clientY;
+              isHorizontalSwipe = false;
+            }
+          }, { passive: true });
+
+          sliderContainer.addEventListener('touchmove', function (e) {
+            if (e.touches.length === 1) {
+              const diffX = Math.abs(e.touches[0].clientX - touchStartX);
+              const diffY = Math.abs(e.touches[0].clientY - touchStartY);
+              if (diffX > diffY && diffX > 10) {
+                isHorizontalSwipe = true;
+              }
+            }
+          }, { passive: true });
+
+          sliderContainer.addEventListener('touchend', function (e) {
+            if (isHorizontalSwipe && e.changedTouches.length === 1) {
+              const endX = e.changedTouches[0].clientX;
+              const diffX = endX - touchStartX;
+              if (Math.abs(diffX) > 35) {
+                if (diffX > 0) {
+                  goToSlide(currentIndex - 1);
+                } else {
+                  goToSlide(currentIndex + 1);
+                }
+              }
+            }
+          }, { passive: true });
+        }
       }
     } catch (e) {}
   }
