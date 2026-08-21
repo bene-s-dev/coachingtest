@@ -1,0 +1,8 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/impressum", "destination": "/impressum.html" },
+    { "source": "/datenschutz", "destination": "/datenschutz.html" }
+  ]
+}
