@@ -32,13 +32,14 @@
       margin-top: 2rem;
     }
     .legal-card h1 { font-size: var(--text-2xl); margin-bottom: 0.5rem; color: var(--color-navy); }
-    .legal-card h2 { font-size: var(--text-lg); margin-top: 2rem; margin-bottom: 0.75rem; color: var(--color-navy); }
+    .legal-card h2 { font-size: var(--text-lg); margin-top: 2rem; margin-bottom: 0.75rem; color: var(--color-navy); border-bottom: 1px solid var(--color-divider); padding-bottom: 0.35rem; }
     .legal-card h3 { font-size: var(--text-md); margin-top: 1.25rem; margin-bottom: 0.5rem; color: var(--color-navy); }
     .legal-card p  { font-size: var(--text-base); line-height: 1.8; color: var(--color-text); margin-bottom: 0.75rem; }
     .legal-card ul { padding-left: 1.5rem; margin-bottom: 0.75rem; }
     .legal-card ul li { font-size: var(--text-base); line-height: 1.8; color: var(--color-text); margin-bottom: 0.25rem; }
     .legal-back { display: inline-flex; align-items: center; gap: 0.5rem; font-size: var(--text-sm); font-weight: 500; color: var(--color-ocean); margin-top: 2rem; text-decoration: none; transition: color var(--transition-fast); }
     .legal-back:hover { color: var(--color-navy); }
+    .legal-notice { background: rgba(58, 124, 165, 0.08); border-left: 3px solid var(--color-ocean); padding: 1rem 1.25rem; border-radius: 4px; margin: 1.5rem 0; }
   </style>
 </head>
 
@@ -97,7 +98,7 @@
         <p><strong>Wofür nutzen wir Ihre Daten?</strong></p>
         <p>
           Ein Teil der Daten wird erhoben, um eine fehlerfreie Bereitstellung der Website zu gewährleisten.
-          Andere Daten können zur Analyse Ihres Nutzerverhaltens verwendet werden.
+          Andere Daten können zur Bearbeitung Ihrer Kontakt- oder Terminanfragen verwendet werden.
         </p>
 
         <h2>2. Hosting</h2>
@@ -123,8 +124,8 @@
           Sarah Unke<br />
           Coaching-Praxis<br />
           Deutschland<br />
-          Telefon: 0177 230 7734<br />
-          E-Mail: coaching@sarah-unke.de
+          Telefon: <a href="tel:+4901772307734">0177 230 7734</a><br />
+          E-Mail: <a href="mailto:coaching@sarah-unke.de">coaching@sarah-unke.de</a>
         </p>
 
         <h3>Speicherdauer</h3>
@@ -147,41 +148,55 @@
           <li>Datenübertragbarkeit zu verlangen (Art. 20 DSGVO)</li>
         </ul>
         <p>
-          Außerdem steht Ihnen das Recht zu, sich bei der zuständigen Aufsichtsbehörde zu beschweren.
+          Außerdem steht Ihnen das Recht zu, sich bei der zuständigen Datenschutz-Aufsichtsbehörde zu beschweren.
         </p>
 
-        <h2>4. Datenerfassung auf dieser Website</h2>
+        <h2>4. Datenerfassung über Formulare & Drittanbieter</h2>
 
-        <h3>Kontaktformular / E-Mail-Kontakt</h3>
+        <h3>Kontaktformular & FormSubmit</h3>
         <p>
-          Wenn Sie uns per Kontaktformular oder E-Mail Anfragen zukommen lassen, werden Ihre Angaben aus dem
-          Formular bzw. Ihrer E-Mail inklusive der von Ihnen angegebenen Kontaktdaten zwecks Bearbeitung der
-          Anfrage und für den Fall von Anschlussfragen bei uns gespeichert. Diese Daten geben wir nicht ohne
-          Ihre Einwilligung weiter.
+          Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten (Name, E-Mail-Adresse, Telefonnummer, Anliegen) zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns verarbeitet und per E-Mail zugestellt.
         </p>
         <p>
-          Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre
-          Anfrage mit der Erfüllung eines Vertrags zusammenhängt oder zur Durchführung vorvertraglicher
-          Maßnahmen erforderlich ist. In allen übrigen Fällen beruht die Verarbeitung auf unserem berechtigten
-          Interesse an der effektiven Bearbeitung der an uns gerichteten Anfragen (Art. 6 Abs. 1 lit. f DSGVO)
-          oder auf Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) sofern diese abgefragt wurde.
+          Für die sichere technische Weiterleitung der Formulardaten an unsere E-Mail-Adresse nutzen wir den Dienst <strong>FormSubmit</strong> (formsubmit.co). Bei Absenden des Formulars werden die eingegebenen Daten verschlüsselt (SSL/TLS) über die Server von FormSubmit weitergeleitet. FormSubmit speichert die übermittelten Formulardaten nicht dauerhaft, sondern dient ausschließlich als Weiterleitungsdienst.
+        </p>
+        <p>
+          Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO (zur Durchführung vorvertraglicher Maßnahmen oder zur Erfüllung eines Vertrags) sowie unserem berechtigten Interesse an einer schnellen und zuverlässigen Bearbeitung Ihrer Anfrage (Art. 6 Abs. 1 lit. f DSGVO).
+        </p>
+
+        <h3>Online-Terminbuchung über Calendly</h3>
+        <p>
+          Für die komfortable und direkte Buchung von Terminen (z.&nbsp;B. für das kostenfreie 15-minütige Kennenlerngespräch) binden wir auf unserer Website Funktionen des Dienstes <strong>Calendly</strong> ein. Anbieter ist die Calendly LLC, 271 17th St NW, 10th Floor, Atlanta, Georgia 30363, USA.
+        </p>
+        <p>
+          Wenn Sie über das Terminbuchungs-Widget oder den Buchungs-Button einen Termin auswählen, werden Sie mit den Servern von Calendly verbunden. Dabei werden die von Ihnen eingegebenen Daten (Name, E-Mail-Adresse, Wunschtermin und ggf. Ihre Telefonnummer oder Notizen) an Calendly übermittelt, um den Termin zu koordinieren und Ihnen eine Terminbestätigung per E-Mail zuzusenden.
+        </p>
+        <p>
+          Die Nutzung von Calendly erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO (Terminvereinbarung zur Durchführung vorvertraglicher Maßnahmen) sowie Art. 6 Abs. 1 lit. f DSGVO (unser berechtigtes Interesse an einem effizienten und reibungslosen Buchungsprozess). Für den Datentransfer in die USA stützt sich Calendly auf die Standardvertragsklauseln der Europäischen Kommission bzw. das EU-US Data Privacy Framework. Weitere Informationen zum Datenschutz bei Calendly finden Sie unter: <a href="https://calendly.com/de/privacy" target="_blank" rel="noopener noreferrer">https://calendly.com/de/privacy</a>.
         </p>
 
         <h3>Google Fonts</h3>
         <p>
-          Diese Seite nutzt zur einheitlichen Darstellung von Schriftarten sogenannte Google Fonts, die von
-          Google bereitgestellt werden. Beim Aufruf einer Seite lädt Ihr Browser die benötigten Fonts in ihren
-          Browsercache, um Texte und Schriftarten korrekt anzuzeigen.
+          Diese Seite nutzt zur einheitlichen Darstellung von Schriftarten sogenannte Google Fonts, die von Google bereitgestellt werden. Beim Aufruf einer Seite lädt Ihr Browser die benötigten Fonts, um Texte und Schriftarten korrekt anzuzeigen. Zu diesem Zweck nimmt der von Ihnen verwendete Browser Verbindung zu den Servern von Google auf.
         </p>
         <p>
-          Zu diesem Zweck muss der von Ihnen verwendete Browser Verbindung zu den Servern von Google aufnehmen.
-          Hierdurch erlangt Google Kenntnis darüber, dass über Ihre IP-Adresse diese Website aufgerufen wurde.
+          Die Nutzung von Google Fonts erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer ansprechenden und einheitlichen typografischen Darstellung). Weitere Informationen finden Sie in der Datenschutzerklärung von Google: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">https://policies.google.com/privacy</a>.
         </p>
 
-        <h2>5. Änderungen dieser Datenschutzerklärung</h2>
+        <h2>5. Coaching-Hinweis & Abgrenzung zur Psychotherapie</h2>
+        <div class="legal-notice">
+          <p><strong>Wichtiger rechtlicher Hinweis für Klientinnen und Klienten:</strong></p>
+          <p>
+            Das auf dieser Website angebotene Coaching ist eine lösungsorientierte Prozessberatung und Begleitung zur persönlichen und beruflichen Weiterentwicklung, Reflexion und Zielerreichung.
+          </p>
+          <p>
+            Coaching ist <strong>keine Psychotherapie, keine psychologische Behandlung und keine Heilkunde</strong> im Sinne des Heilpraktikergesetzes. Es dient nicht der Diagnose, Heilung oder Linderung von psychischen Störungen oder körperlichen Erkrankungen und kann eine medizinische, psychiatrische oder psychotherapeutische Behandlung zu keinem Zeitpunkt ersetzen. Eine normale psychische und physische Belastbarkeit wird bei Klienten vorausgesetzt.
+          </p>
+        </div>
+
+        <h2>6. Änderungen dieser Datenschutzerklärung</h2>
         <p>
-          Diese Datenschutzerklärung kann angepasst werden, wenn sich rechtliche Anforderungen ändern oder neue
-          Funktionen auf der Website hinzukommen. Die jeweils aktuelle Version ist auf dieser Seite abrufbar.
+          Diese Datenschutzerklärung kann angepasst werden, wenn sich rechtliche Anforderungen ändern oder neue Funktionen auf der Website hinzukommen. Die jeweils aktuelle Version ist jederzeit auf dieser Seite abrufbar.
         </p>
 
         <a href="/" class="legal-back">← Zurück zur Startseite</a>
