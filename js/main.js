@@ -233,7 +233,7 @@ function initSarahWebsite() {
   // ─────────────────────────────────────────────
   try {
     const revealElements = document.querySelectorAll(
-      '.welcome .container, .content-card, .service-card, .methodology__quote, .faq__item, .contact__inner > *'
+      '.welcome .container, .content-card, .methodology__quote, .faq__item'
     );
 
     if (revealElements.length > 0) {

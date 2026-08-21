@@ -1,8 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap');
-
 /* =============================================================
    SARAH UNKE COACHING – Main Stylesheet
+   =============================================================
+
+   TABLE OF CONTENTS:
+   1. CSS Variables (colors, fonts, fluid spacing & typography)
+   2. Google Fonts Import
+   3. Reset & Base Styles
+   4. Scalable Container & Utility Classes
+   5. Hero Section
+   6. Welcome Section
+   7. About Section
+   8. Services (Angebot) Section
+   9. Methodology (Methodik) Section
+   10. FAQ Section
+   11. Contact Section
+   12. Footer
+   13. Responsive Breakpoints
+
    ============================================================= */
+
 
 /* -------------------------------------------------------------
    1. CSS VARIABLES
@@ -58,8 +74,15 @@
   --hero-overlay: rgba(10, 30, 45, 0.35);
 }
 
+
 /* -------------------------------------------------------------
-   2. RESET & BASE STYLES
+   2. GOOGLE FONTS IMPORT
+   ------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap');
+
+
+/* -------------------------------------------------------------
+   3. RESET & BASE STYLES
    ------------------------------------------------------------- */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -74,6 +97,7 @@ html {
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent !important;
   background-color: var(--color-navy);
+  touch-action: pan-y;
 }
 
 body {
@@ -85,6 +109,12 @@ body {
   -webkit-tap-highlight-color: transparent !important;
   overflow-x: hidden;
   width: 100%;
+  touch-action: pan-y;
+}
+
+img, a, button, svg {
+  -webkit-user-drag: none;
+  user-drag: none;
 }
 
 button, a, input, textarea, select {
@@ -160,12 +190,14 @@ hr {
 .section-parallax {
   min-height: auto;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: var(--section-padding-y) 0;
   background: transparent !important;
   width: 100%;
   box-sizing: border-box;
+  touch-action: pan-y;
 }
 
 /* Fluid Scalable Container */
@@ -190,7 +222,9 @@ hr {
   -webkit-backdrop-filter: blur(10px);
   width: 100%;
   box-sizing: border-box;
+  overflow: hidden;
   touch-action: pan-y;
+  -webkit-user-drag: none;
 }
 
 /* Main Section Padding */
@@ -758,12 +792,28 @@ hr {
   box-shadow: 0 4px 14px rgba(29, 61, 82, 0.35), 0 8px 24px -3px rgba(29, 61, 82, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.35);
 }
 
+.contact {
+  touch-action: pan-y;
+  -webkit-user-drag: none;
+}
+
+.contact .content-card {
+  touch-action: pan-y;
+  -webkit-user-drag: none;
+  overflow: hidden;
+}
+
+.contact__inner {
+  touch-action: pan-y;
+}
+
 .contact__form {
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
   margin-top: 1.5rem;
   width: 100%;
+  touch-action: pan-y;
 }
 
 .contact__form input,
@@ -778,8 +828,23 @@ hr {
   background: var(--color-white);
   transition: border-color var(--transition-fast);
   outline: none;
-  resize: vertical;
+  resize: none !important;
+  touch-action: pan-y;
   box-sizing: border-box;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.contact__form input {
+  min-height: 48px;
+}
+
+.contact__form textarea {
+  min-height: 120px;
+  height: 120px;
+  max-height: 220px;
+  line-height: 1.5;
+  overflow-y: auto;
 }
 
 .contact__form input:focus,
@@ -1050,9 +1115,9 @@ hr {
    ------------------------------------------------------------- */
 .js-animated .reveal-on-scroll {
   opacity: 0;
-  transform: translateY(22px);
-  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(16px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 

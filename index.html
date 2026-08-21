@@ -38,6 +38,8 @@
   <link rel="manifest" href="assets/site.webmanifest">
   <link rel="shortcut icon" href="assets/favicon.ico">
 
+  <!-- Google Fonts are loaded inside style.css via @import -->
+
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/nav.css" />
@@ -555,7 +557,7 @@
 
                 <input type="text"  name="name"    placeholder="Ihr Name"        required autocomplete="name" />
                 <input type="email" name="email"   placeholder="Ihre E-Mail"     required autocomplete="email" />
-                <textarea           name="message" placeholder="Ihre Nachricht"  required></textarea>
+                <textarea           name="message" id="contact-message" rows="4" placeholder="Ihre Nachricht" required></textarea>
                 <button type="submit" class="btn-book" id="contact-submit-btn">Nachricht senden</button>
                 <div class="contact__form-status" id="contact-status" style="display:none;" aria-live="polite"></div>
               </form>
@@ -801,7 +803,7 @@
     // 6. SCROLL REVEAL ANIMATIONS
     try {
       const revealElements = document.querySelectorAll(
-        '.welcome .container, .content-card, .service-card, .methodology__quote, .faq__item, .contact__inner > *'
+        '.welcome .container, .content-card, .methodology__quote, .faq__item'
       );
       if (revealElements.length > 0) {
         if ('IntersectionObserver' in window) {

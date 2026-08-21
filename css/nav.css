@@ -139,6 +139,7 @@ body.has-hero .nav--show-logo .site-nav__logo,
   color: var(--color-ocean, #3a7ca5);
   font-weight: 600;
   font-size: 1.1em;
+  line-height: 1;
 }
 
 @media (max-width: 480px) {
