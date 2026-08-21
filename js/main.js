@@ -421,6 +421,13 @@ function initSarahWebsite() {
       }
     }
 
+    if (openBtn) {
+      openBtn.addEventListener('click', triggerCalendly);
+    }
+  } catch (err) {
+    console.error('Calendly popup error:', err);
+  }
+
   // ─────────────────────────────────────────────
   // 9. REVIEWS SLIDER (Kundenstimmen)
   // ─────────────────────────────────────────────
