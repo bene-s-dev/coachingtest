@@ -1,19 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap');
+
 /* =============================================================
    SARAH UNKE COACHING – Main Stylesheet
    =============================================================
 
    TABLE OF CONTENTS:
    1. CSS Variables (colors, fonts, fluid spacing & typography)
-   2. Google Fonts Import
-   3. Reset & Base Styles
-   4. Scalable Container & Utility Classes
-   5. Hero Section
-   6. Welcome Section
-   7. About Section
-   8. Services (Angebot) Section
-   9. Methodology (Methodik) Section
-   10. FAQ Section
-   11. Contact Section
+   2. Reset & Base Styles
+   3. Scalable Container & Utility Classes
+   4. Hero Section
+   5. Welcome Section
+   6. About Section
+   7. Services (Angebot) Section
+   8. Methodology (Methodik) Section
+   9. FAQ Section
+   10. Contact Section
+   11. Reviews Section
    12. Footer
    13. Responsive Breakpoints
 
@@ -76,13 +78,7 @@
 
 
 /* -------------------------------------------------------------
-   2. GOOGLE FONTS IMPORT
-   ------------------------------------------------------------- */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap');
-
-
-/* -------------------------------------------------------------
-   3. RESET & BASE STYLES
+   2. RESET & BASE STYLES
    ------------------------------------------------------------- */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -883,25 +879,32 @@ hr {
    ------------------------------------------------------------- */
 .reviews.section-parallax {
   padding-top: clamp(1rem, 2vw, 1.5rem);
-  padding-bottom: clamp(2rem, 4vw, 3.5rem);
+  padding-bottom: clamp(2rem, 4vw, 3rem);
 }
 
 .reviews .content-card {
-  overflow: hidden;
+  overflow: visible;
   touch-action: pan-y;
+  padding-bottom: clamp(1rem, 2vw, 1.5rem);
 }
 
 .reviews-slider {
   position: relative;
   width: 100%;
-  overflow: hidden;
   touch-action: pan-y;
   user-select: none;
+  padding-bottom: 0;
+}
+
+.reviews-viewport {
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-md);
 }
 
 .reviews-track {
   display: flex;
-  transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
   width: 100%;
   will-change: transform;
 }
@@ -912,16 +915,23 @@ hr {
   min-width: 100%;
   box-sizing: border-box;
   padding: 0.25rem;
+  transition: opacity 0.38s ease, transform 0.38s ease;
+  will-change: opacity, transform;
+}
+
+.review-slide.is-fading {
+  opacity: 0;
+  transform: scale(0.985);
 }
 
 .review-card {
   background: rgba(240, 247, 251, 0.75);
   border: 1px solid rgba(58, 124, 165, 0.2);
   border-radius: var(--radius-md);
-  padding: clamp(1.25rem, 3.5vw, 2.25rem);
+  padding: clamp(1rem, 2.5vw, 1.65rem);
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 0.85rem;
   box-shadow: inset 0 1.5px 0 #ffffff, 0 4px 16px -4px rgba(10, 30, 45, 0.05);
   position: relative;
   transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
@@ -941,15 +951,24 @@ hr {
 
 .review-stars {
   display: flex;
-  gap: 0.2rem;
+  align-items: center;
+  gap: 0.25rem;
   color: #e5a93b;
-  font-size: 1.15rem;
   line-height: 1;
 }
 
+.review-stars .lucide-star {
+  width: 18px;
+  height: 18px;
+  fill: #e5a93b;
+  stroke: #e5a93b;
+  display: inline-block;
+  vertical-align: middle;
+}
+
 .review-quote-icon {
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
   color: var(--color-ocean);
   opacity: 0.45;
   flex-shrink: 0;
@@ -958,11 +977,38 @@ hr {
 .review-text {
   font-family: var(--font-body);
   font-size: var(--text-base);
-  line-height: 1.8;
+  line-height: 1.65;
   color: var(--color-text);
-  white-space: pre-line;
   margin-bottom: 0;
   user-select: text;
+}
+
+.review-text-more {
+  display: none;
+}
+
+.review-text-more.is-expanded {
+  display: inline;
+}
+
+.review-toggle-btn {
+  background: none;
+  border: none;
+  color: var(--color-ocean);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 0.35rem;
+  display: inline-block;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color var(--transition-fast);
+}
+
+.review-toggle-btn:hover {
+  color: var(--color-navy);
 }
 
 .review-footer {
@@ -971,8 +1017,8 @@ hr {
   justify-content: space-between;
   gap: 0.75rem;
   border-top: 1px solid var(--color-divider);
-  padding-top: 1rem;
-  margin-top: 0.25rem;
+  padding-top: 0.75rem;
+  margin-top: 0.15rem;
   flex-wrap: wrap;
 }
 
@@ -997,7 +1043,8 @@ hr {
   align-items: center;
   justify-content: center;
   gap: 1.25rem;
-  margin-top: 1.75rem;
+  margin-top: 1rem;
+  padding: 0;
 }
 
 .reviews-arrow {
@@ -1256,6 +1303,30 @@ hr {
   .faq__pricing-item {
     padding: 0.85rem 1rem;
     gap: 0.4rem;
+  }
+
+  .reviews.section-parallax {
+    padding-top: 0.5rem;
+    padding-bottom: 1.25rem;
+  }
+
+  .reviews .content-card {
+    padding-bottom: 0.85rem;
+  }
+
+  .review-card {
+    padding: 1rem 1.15rem;
+    gap: 0.65rem;
+  }
+
+  .reviews-controls {
+    margin-top: 0.65rem;
+    gap: 0.85rem;
+  }
+
+  .reviews-arrow {
+    width: 36px;
+    height: 36px;
   }
 
   .site-footer {
